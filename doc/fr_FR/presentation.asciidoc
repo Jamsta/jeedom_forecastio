@@ -1,0 +1,3 @@
+==== Forecast.io, météo temps réel
+
+Ce plugin permet d'obtenir la météo depuis le site Forecast.io qui dispose de données "temps réel"
