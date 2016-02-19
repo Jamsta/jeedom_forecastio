@@ -162,7 +162,7 @@ public function postUpdate() {
     $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windBearing');
     if (!is_object($forecastioCmd)) {
       $forecastioCmd = new forecastioCmd();
-      $forecastioCmd->setName(__('Force du Vent', __FILE__));
+      $forecastioCmd->setName(__('Direction du Vent', __FILE__));
       $forecastioCmd->setEqLogic_id($this->id);
       $forecastioCmd->setLogicalId('windBearing');
       $forecastioCmd->setType('info');
@@ -225,28 +225,6 @@ public function postUpdate() {
       $forecastioCmd->save();
     }
 
-    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMin');
-    if (!is_object($forecastioCmd)) {
-      $forecastioCmd = new forecastioCmd();
-      $forecastioCmd->setName(__('Température Minimum', __FILE__));
-      $forecastioCmd->setEqLogic_id($this->id);
-      $forecastioCmd->setLogicalId('temperatureMin');
-      $forecastioCmd->setType('info');
-      $forecastioCmd->setSubType('numeric');
-      $forecastioCmd->save();
-    }
-
-    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMax');
-    if (!is_object($forecastioCmd)) {
-      $forecastioCmd = new forecastioCmd();
-      $forecastioCmd->setName(__('Température Maximum', __FILE__));
-      $forecastioCmd->setEqLogic_id($this->id);
-      $forecastioCmd->setLogicalId('temperatureMax');
-      $forecastioCmd->setType('info');
-      $forecastioCmd->setSubType('numeric');
-      $forecastioCmd->save();
-    }
-
     $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'apparentTemperatureMin');
     if (!is_object($forecastioCmd)) {
       $forecastioCmd = new forecastioCmd();
@@ -269,6 +247,226 @@ public function postUpdate() {
       $forecastioCmd->save();
     }
 
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMin_1');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Température Minimum Jour', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('temperatureMin_1');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('numeric');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMax_1');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Température Maximum Jour', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('temperatureMax_1');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('numeric');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'summary_1');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Condition Jour', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('summary_1');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('string');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'icon_1');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Icone Jour', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('icon_1');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('string');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMin_2');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Température Minimum +1', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('temperatureMin_2');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('numeric');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMax_2');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Température Maximum +1', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('temperatureMax_2');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('numeric');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'summary_2');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Condition Jour +1', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('summary_2');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('string');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'icon_2');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Icone Jour +1', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('icon_2');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('string');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMin_3');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Température Minimum +2', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('temperatureMin_3');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('numeric');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMax_3');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Température Maximum +2', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('temperatureMax_3');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('numeric');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'summary_3');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Condition Jour +2', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('summary_3');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('string');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'icon_3');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Icone Jour +2', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('icon_3');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('string');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMin_4');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Température Minimum +3', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('temperatureMin_4');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('numeric');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMax_4');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Température Maximum +3', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('temperatureMax_4');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('numeric');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'summary_4');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Condition Jour +3', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('summary_4');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('string');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'icon_4');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Icone Jour +3', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('icon_4');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('string');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMin_5');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Température Minimum +4', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('temperatureMin_5');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('numeric');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMax_5');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Température Maximum +4', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('temperatureMax_5');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('numeric');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'summary_5');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Condition Jour +4', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('summary_5');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('string');
+      $forecastioCmd->save();
+    }
+
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'icon_5');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Icone Jour +4', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('icon_5');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('string');
+      $forecastioCmd->save();
+    }
+
     forecastio::getInformations();
   }
 }
@@ -279,7 +477,7 @@ public function getInformations() {
   $geolocCmd = geolocCmd::byId($geoloc);
   $geolocval = $geolocCmd->execCmd(null, 0);
   $apikey = $this->getConfiguration('apikey', '');
-  $url = 'https://api.forecast.io/forecast/' . $apikey .'/' . $geolocval . '?units=ca';
+  $url = 'https://api.forecast.io/forecast/' . $apikey .'/' . $geolocval . '?units=ca&lang=fr';
   log::add('forecastio', 'debug', $url);
   $json_string = file_get_contents($url);
   $parsed_json = json_decode($json_string, true);
@@ -287,21 +485,49 @@ public function getInformations() {
   //log::add('forecastio', 'debug', print_r($parsed_json, true));
   //log::add('forecastio', 'debug', print_r($parsed_json['currently'], true));
   foreach ($parsed_json['daily']['data'][0] as $key => $value) {
-    //log::add('forecastio', 'debug', $key . ' ' . $value);
-    if ($key != 'time') {
+    if ($key == 'apparentTemperatureMax' || $key == 'apparentTemperatureMin' || $key == 'temperatureMax' || $key == 'temperatureMin' || $key == 'sunsetTime' || $key == 'sunriseTime') {
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($this->getId(),$key);
+      //log::add('forecastio', 'debug', $key . ' ' . $value);
       if (is_object($forecastioCmd)) {
+        if ($key == 'sunriseTime' || $key == 'sunsetTime') {
+          $value = date('Hi',$value);
+        }
         $forecastioCmd->setConfiguration('value',$value);
         $forecastioCmd->save();
         $forecastioCmd->event($value);
       }
     }
   }
+  $i = 0;
+  while ($i < 5) {
+    $j = $i +1;
+    foreach ($parsed_json['daily']['data'][$i] as $key => $value) {
+      if ($key == 'temperatureMax' || $key == 'temperatureMin' || $key == 'summary' || $key == 'icon') {
+        $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($this->getId(),$key . '_' . $j);
+
+        if (is_object($forecastioCmd)) {
+          log::add('forecastio', 'debug', $j . $key . ' ' . $value);
+          $forecastioCmd->setConfiguration('value',$value);
+          $forecastioCmd->save();
+          $forecastioCmd->event($value);
+        }
+      }
+    }
+    $i++;
+  }
+
   foreach ($parsed_json['currently'] as $key => $value) {
     //log::add('forecastio', 'debug', $key . ' ' . $value);
     if ($key != 'time') {
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($this->getId(),$key);
       if (is_object($forecastioCmd)) {
+        if ($key == 'windBearing') {
+          if ($value > 179) {
+            $value = $value -180;
+          } else {
+            $value = $value + 180;
+          }
+        }
         $forecastioCmd->setConfiguration('value',$value);
         $forecastioCmd->save();
         $forecastioCmd->event($value);
@@ -337,40 +563,37 @@ public function toHtml($_version = 'dashboard') {
   if ($this->getDisplay('hideOn' . $_version) == 1) {
     return '';
   }
-  $mc = cache::byKey('weatherWidget' . $_version . $this->getId());
+  $mc = cache::byKey('forecastioWidget' . $_version . $this->getId());
   if ($mc->getValue() != '') {
     return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
   }
   $html_forecast = '';
 
   if ($_version != 'mobile' || $this->getConfiguration('fullMobileDisplay', 0) == 1) {
-    $forcast_template = getTemplate('core', $_version, 'forecast', 'weather');
+    $forcast_template = getTemplate('core', $_version, 'forecast', 'forecastio');
     for ($i = 0; $i < 5; $i++) {
       $replace = array();
       $replace['#day#'] = date_fr(date('l', strtotime('+' . $i . ' days')));
 
       if ($i == 0) {
-        $temperature_min = $this->getCmd(null, 'temperature_min');
+        $temperature_min = $this->getCmd(null, 'temperatureMin');
       } else {
-        $temperature_min = $this->getCmd(null, 'temperature_' . $i . '_min');
+        $temperature_min = $this->getCmd(null, 'temperatureMin' . $i);
       }
       $replace['#low_temperature#'] = is_object($temperature_min) ? $temperature_min->execCmd() : '';
 
       if ($i == 0) {
-        $temperature_max = $this->getCmd(null, 'temperature_max');
+        $temperature_max = $this->getCmd(null, 'temperatureMax');
       } else {
-        $temperature_max = $this->getCmd(null, 'temperature_' . $i . '_max');
+        $temperature_max = $this->getCmd(null, 'temperatureMax' . $i);
       }
       $replace['#hight_temperature#'] = is_object($temperature_max) ? $temperature_max->execCmd() : '';
       $replace['#tempid#'] = is_object($temperature_max) ? $temperature_max->getId() : '';
 
-      if ($i == 0) {
-        $condition = $this->getCmd(null, 'condition');
-      } else {
-        $condition = $this->getCmd(null, 'condition_' . $i);
-      }
-      $replace['#icone#'] = is_object($condition) ? self::getIconFromCondition($condition->execCmd()) : '';
-      $replace['#conditionid#'] = is_object($condition) ? $condition->getId() : '';
+      $icone = $this->getCmd(null, 'icon_' . $i);
+
+      $replace['#iconeid#'] = is_object($icone) ? 'iconForecast' . $icone->getId() : '';
+      $replace['#conditionid#'] = is_object($icone) ? $icone->getId() : '';
 
       $html_forecast .= template_replace($replace, $forcast_template);
     }
@@ -382,7 +605,7 @@ public function toHtml($_version = 'dashboard') {
     '#background_color#' => $this->getBackgroundColor($_version),
     '#eqLink#' => ($this->hasRight('w')) ? $this->getLinkToConfiguration() : '#',
     '#forecast#' => $html_forecast,
-    '#uid#' => 'weather' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
+    '#uid#' => 'forecastio' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
   );
   $temperature = $this->getCmd(null, 'temperature');
   $replace['#temperature#'] = is_object($temperature) ? $temperature->execCmd() : '';
@@ -399,20 +622,22 @@ public function toHtml($_version = 'dashboard') {
   $replace['#windspeed#'] = is_object($wind_speed) ? $wind_speed->execCmd() : '';
   $replace['#windid#'] = is_object($wind_speed) ? $wind_speed->getId() : '';
 
+  $sunrise = $this->getCmd(null, 'sunriseTime');
+  $replace['#sunrise#'] = is_object($sunrise) ? $sunrise->execCmd() : '';
+  $replace['#sunriseid#'] = is_object($sunrise) ? $sunrise->getId() : '';
 
-  $replace['#sunrise#'] = '';
-  $replace['#sunset#'] = '';
+  $sunset = $this->getCmd(null, 'sunsetTime');
+  $replace['#sunset#'] = is_object($sunset) ? $sunset->execCmd() : '';
+  $replace['#sunsetid#'] = is_object($sunset) ? $sunset->getId() : '';
 
-  $wind_direction = $this->getCmd(null, 'wind_direction');
+  $wind_direction = $this->getCmd(null, 'windBearing');
   $replace['#wind_direction#'] = is_object($wind_direction) ? $wind_direction->execCmd() : 0;
 
-  $replace['#refresh_id#'] = '';
-
   $condition = $this->getCmd(null, 'summary');
-  $sunset_time = '';
-  $sunrise_time = '';
+  $icone = $this->getCmd(null, 'icon');
   if (is_object($condition)) {
-    $replace['#icone#'] = self::getIconFromCondition($condition->execCmd(), $sunrise_time, $sunset_time);
+    $replace['#iconeid#'] = 'iconForecast' . $icone->getId();
+    $replace['#icone#'] = $icone->execCmd();
     $replace['#condition#'] = $condition->execCmd();
     $replace['#conditionid#'] = $condition->getId();
     $replace['#collectDate#'] = $condition->getCollectDate();
@@ -422,6 +647,22 @@ public function toHtml($_version = 'dashboard') {
     $replace['#collectDate#'] = '';
   }
 
+  $icone = $this->getCmd(null, 'icon_2');
+  $replace['#iconeid2#'] = is_object($icone) ? 'iconForecast' . $icone->getId() : '';
+  $replace['#icone2#'] = is_object($icone) ? $icone->execCmd() : '';
+  $icone = $this->getCmd(null, 'icon_3');
+  $replace['#iconeid3#'] = is_object($icone) ? 'iconForecast' . $icone->getId() : '';
+  $replace['#icone3#'] = is_object($icone) ? $icone->execCmd() : '';
+  $icone = $this->getCmd(null, 'icon_4');
+  $replace['#iconeid4#'] = is_object($icone) ? 'iconForecast' . $icone->getId() : '';
+  $replace['#icone4#'] = is_object($icone) ? $icone->execCmd() : '';
+  $icone = $this->getCmd(null, 'icon_5');
+  $replace['#iconeid5#'] = is_object($icone) ? 'iconForecast' . $icone->getId() : '';
+  $replace['#icone5#'] = is_object($icone) ? $icone->execCmd() : '';
+  $icone = $this->getCmd(null, 'icon_1');
+  $replace['#iconeid1#'] = is_object($icone) ? 'iconForecast' . $icone->getId() : '';
+  $replace['#icone1#'] = is_object($icone) ? $icone->execCmd() : '';
+
   $parameters = $this->getDisplay('parameters');
   if (is_array($parameters)) {
     foreach ($parameters as $key => $value) {
@@ -429,16 +670,8 @@ public function toHtml($_version = 'dashboard') {
     }
   }
 
-  if ($this->getConfiguration('modeImage', 0) == 1) {
-    $replace['#visibilityIcon#'] = "none";
-    $replace['#visibilityImage#'] = "block";
-  } else {
-    $replace['#visibilityIcon#'] = "block";
-    $replace['#visibilityImage#'] = "none";
-  }
-
-  $html = template_replace($replace, getTemplate('core', $_version, 'current', 'weather'));
-  cache::set('weatherWidget' . $_version . $this->getId(), $html, 0);
+  $html = template_replace($replace, getTemplate('core', $_version, 'current', 'forecastio'));
+  cache::set('forecastioWidget' . $_version . $this->getId(), $html, 0);
   return $html;
 }
 

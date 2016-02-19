@@ -1,3 +1,4 @@
+<script src="plugins/forecastio/desktop/js/skycons.js"></script>
 <div class="eqLogic-widget eqLogic" style="width: 350px;background-color: #background_color#; #style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="dashboard" >
  <span class="statusCmd" style="position : absolute;left : 5px; width : 30px;z-index: 1030;"></span>
  <i class='fa fa-refresh pull-right cursor refresh' style="margin-top: 3px;margin-right: 3px;"></i>
@@ -5,8 +6,7 @@
  <center class="widget-name"><strong><a href="#eqLink#" style="font-size : 1.1em;"> #city# </a></strong></center>
  <div style="position : relative; left : 15px;" class="tooltips" title="#collectDate#">
     <span class="pull-left">
-        <i class="#icone#" style="font-size: 4em; display: #visibilityIcon#;"></i>
-	<img style="height:62px;width:80px; display: #visibilityImage#;" src="plugins/weather/core/template/images/#icone#.png"/>
+        <canvas id="#iconeid#" width="64" height="64">
     </span>
     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
         <div id="windDirection#uid#" style="width: 80px; height: 80px;" class="cmd noRefresh" data-type="info" data-subtype="numeric" data-cmd_id="#windid#"></div>
@@ -15,7 +15,7 @@
             <span style="font-size: 0.8em;position: relative;left:10px;">#sunrise# | #sunset#</span>
         </div>
     </div>
-    <span style="margin-left: 5px;"class="cmd noRefresh" data-type="info" data-subtype="string" data-cmd_id="#conditionid#">  #condition# </span><br/> 
+    <span style="margin-left: 5px;"class="cmd noRefresh" data-type="info" data-subtype="string" data-cmd_id="#conditionid#">  #condition# </span><br/>
     <span style="margin-left: 5px;font-size: 0.8em;" class="cmd noRefresh" data-type="info" data-subtype="string" data-cmd_id="#tempid#">  #temperature# °C / #humidity# % </span><br/>
     <span style="margin-left: 5px;font-size: 0.8em;" class="cmd noRefresh" data-type="info" data-subtype="string" data-cmd_id="#pressureid#">  #windspeed# km/h | #pressure# mb</span>
 </div><br/>
@@ -112,5 +112,16 @@
                     }]
                 });
 }
+</script>
+
+<script>
+var skycons = new Skycons({"color": "white"});
+skycons.add("#iconeid1#", Skycons.#icone1#);
+skycons.add("#iconeid2#", Skycons.#icone2#);
+skycons.add("#iconeid3#", Skycons.#icone3#);
+skycons.add("#iconeid4#", Skycons.#icone4#);
+skycons.add("#iconeid5#", Skycons.#icone5#);
+skycons.add("#iconeid#", Skycons.#icone#);
+skycons.play();
 </script>
 </div>
