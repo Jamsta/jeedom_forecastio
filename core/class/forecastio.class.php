@@ -20,8 +20,13 @@ require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class forecastio extends eqLogic {
 
-  public static function cron5() {
-    foreach (eqLogic::byType('forecastio', true) as $forecastio) {
+  public static function cron5($_eqLogic_id = null) {
+		if ($_eqLogic_id == null) {
+			$eqLogics = self::byType('forecastio', true);
+		} else {
+			$eqLogics = array(self::byId($_eqLogic_id));
+		}
+    foreach ($eqLogics as $forecastio) {
         if (null !== ($forecastio->getConfiguration('geoloc', ''))) {
           log::add('forecastio', 'debug', 'pull cron');
           $forecastio->getInformations();
@@ -467,6 +472,17 @@ public function postUpdate() {
       $forecastioCmd->save();
     }
 
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'refresh');
+		if (!is_object($forecastioCmd)) {
+			$forecastioCmd = new forecastioCmd();
+			$forecastioCmd->setName(__('Rafraichir', __FILE__));
+		}
+		$forecastioCmd->setEqLogic_id($this->getId());
+		$forecastioCmd->setLogicalId('refresh');
+		$forecastioCmd->setType('action');
+		$forecastioCmd->setSubType('other');
+		$forecastioCmd->save();
+
     forecastio::getInformations();
   }
 }
@@ -504,9 +520,7 @@ public function getInformations() {
     foreach ($parsed_json['daily']['data'][$i] as $key => $value) {
       if ($key == 'temperatureMax' || $key == 'temperatureMin' || $key == 'summary' || $key == 'icon') {
         $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($this->getId(),$key . '_' . $j);
-
         if (is_object($forecastioCmd)) {
-          log::add('forecastio', 'debug', $j . $key . ' ' . $value);
           $forecastioCmd->setConfiguration('value',$value);
           $forecastioCmd->save();
           $forecastioCmd->event($value);
@@ -527,6 +541,9 @@ public function getInformations() {
           } else {
             $value = $value + 180;
           }
+        }
+        if ($key == 'humidity') {
+          $value = $value * 100;
         }
         $forecastioCmd->setConfiguration('value',$value);
         $forecastioCmd->save();
@@ -575,25 +592,16 @@ public function toHtml($_version = 'dashboard') {
       $replace = array();
       $replace['#day#'] = date_fr(date('l', strtotime('+' . $i . ' days')));
 
-      if ($i == 0) {
-        $temperature_min = $this->getCmd(null, 'temperatureMin');
-      } else {
-        $temperature_min = $this->getCmd(null, 'temperatureMin' . $i);
-      }
-      $replace['#low_temperature#'] = is_object($temperature_min) ? $temperature_min->execCmd() : '';
+      $j = $i + 1;
+      $temperature_min = $this->getCmd(null, 'temperatureMin_' . $j);
+      $replace['#low_temperature#'] = is_object($temperature_min) ? round($temperature_min->execCmd()) : '';
 
-      if ($i == 0) {
-        $temperature_max = $this->getCmd(null, 'temperatureMax');
-      } else {
-        $temperature_max = $this->getCmd(null, 'temperatureMax' . $i);
-      }
-      $replace['#hight_temperature#'] = is_object($temperature_max) ? $temperature_max->execCmd() : '';
+      $temperature_max = $this->getCmd(null, 'temperatureMax_' . $j);
+      $replace['#hight_temperature#'] = is_object($temperature_max) ? round($temperature_max->execCmd()) : '';
       $replace['#tempid#'] = is_object($temperature_max) ? $temperature_max->getId() : '';
 
-      $icone = $this->getCmd(null, 'icon_' . $i);
-
-      $replace['#iconeid#'] = is_object($icone) ? 'iconForecast' . $icone->getId() : '';
-      $replace['#conditionid#'] = is_object($icone) ? $icone->getId() : '';
+      $icone = $this->getCmd(null, 'icon_' . $j);
+      $replace['#icone#'] = is_object($icone) ? $icone->execCmd() : '';
 
       $html_forecast .= template_replace($replace, $forcast_template);
     }
@@ -608,7 +616,7 @@ public function toHtml($_version = 'dashboard') {
     '#uid#' => 'forecastio' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
   );
   $temperature = $this->getCmd(null, 'temperature');
-  $replace['#temperature#'] = is_object($temperature) ? $temperature->execCmd() : '';
+  $replace['#temperature#'] = is_object($temperature) ? round($temperature->execCmd()) : '';
   $replace['#tempid#'] = is_object($temperature) ? $temperature->getId() : '';
 
   $humidity = $this->getCmd(null, 'humidity');
@@ -623,20 +631,22 @@ public function toHtml($_version = 'dashboard') {
   $replace['#windid#'] = is_object($wind_speed) ? $wind_speed->getId() : '';
 
   $sunrise = $this->getCmd(null, 'sunriseTime');
-  $replace['#sunrise#'] = is_object($sunrise) ? $sunrise->execCmd() : '';
+  $replace['#sunrise#'] = is_object($sunrise) ? substr_replace($sunrise->execCmd(),':',-2,0) : '';
   $replace['#sunriseid#'] = is_object($sunrise) ? $sunrise->getId() : '';
 
   $sunset = $this->getCmd(null, 'sunsetTime');
-  $replace['#sunset#'] = is_object($sunset) ? $sunset->execCmd() : '';
+  $replace['#sunset#'] = is_object($sunset) ? substr_replace($sunset->execCmd(),':',-2,0) : '';
   $replace['#sunsetid#'] = is_object($sunset) ? $sunset->getId() : '';
 
   $wind_direction = $this->getCmd(null, 'windBearing');
   $replace['#wind_direction#'] = is_object($wind_direction) ? $wind_direction->execCmd() : 0;
 
+  $refresh = $this->getCmd(null, 'refresh');
+  $replace['#refresh_id#'] = is_object($refresh) ? $refresh->getId() : '';
+
   $condition = $this->getCmd(null, 'summary');
   $icone = $this->getCmd(null, 'icon');
   if (is_object($condition)) {
-    $replace['#iconeid#'] = 'iconForecast' . $icone->getId();
     $replace['#icone#'] = $icone->execCmd();
     $replace['#condition#'] = $condition->execCmd();
     $replace['#conditionid#'] = $condition->getId();
@@ -646,22 +656,6 @@ public function toHtml($_version = 'dashboard') {
     $replace['#condition#'] = '';
     $replace['#collectDate#'] = '';
   }
-
-  $icone = $this->getCmd(null, 'icon_2');
-  $replace['#iconeid2#'] = is_object($icone) ? 'iconForecast' . $icone->getId() : '';
-  $replace['#icone2#'] = is_object($icone) ? $icone->execCmd() : '';
-  $icone = $this->getCmd(null, 'icon_3');
-  $replace['#iconeid3#'] = is_object($icone) ? 'iconForecast' . $icone->getId() : '';
-  $replace['#icone3#'] = is_object($icone) ? $icone->execCmd() : '';
-  $icone = $this->getCmd(null, 'icon_4');
-  $replace['#iconeid4#'] = is_object($icone) ? 'iconForecast' . $icone->getId() : '';
-  $replace['#icone4#'] = is_object($icone) ? $icone->execCmd() : '';
-  $icone = $this->getCmd(null, 'icon_5');
-  $replace['#iconeid5#'] = is_object($icone) ? 'iconForecast' . $icone->getId() : '';
-  $replace['#icone5#'] = is_object($icone) ? $icone->execCmd() : '';
-  $icone = $this->getCmd(null, 'icon_1');
-  $replace['#iconeid1#'] = is_object($icone) ? 'iconForecast' . $icone->getId() : '';
-  $replace['#icone1#'] = is_object($icone) ? $icone->execCmd() : '';
 
   $parameters = $this->getDisplay('parameters');
   if (is_array($parameters)) {
@@ -680,6 +674,11 @@ public function toHtml($_version = 'dashboard') {
 class forecastioCmd extends cmd {
 
   public function execute($_options = null) {
+    if ($this->getLogicalId() == 'refresh') {
+			weather::cron30($this->getEqLogic_id());
+		} else {
+      return $this->getConfiguration('value');
+    }
   }
 
 }

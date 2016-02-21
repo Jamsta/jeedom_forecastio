@@ -54,7 +54,9 @@ function addCmdToTable(_cmd) {
         tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="value"></span>';
         tr += '</td>';
         tr += '<td>';
-        tr += '<span><input type="checkbox" data-size="mini" data-label-text="{{Historiser}}" class="cmdAttr bootstrapSwitch" data-l1key="isHistorized" /></span> ';
+        if (init(_cmd.subType) == "numeric") {
+          tr += '<span><input type="checkbox" data-size="mini" data-label-text="{{Historiser}}" class="cmdAttr bootstrapSwitch" data-l1key="isHistorized" /></span> ';
+        }
         tr += '</td>';
         tr += '<td>';
         if (is_numeric(_cmd.id)) {
