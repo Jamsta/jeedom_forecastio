@@ -563,7 +563,7 @@ public function getInformations() {
     }
   }
 
-  if ($parsed_json['alert']) {
+  if (!empty($parsed_json['alert'])) {
     $title = '';
     $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($this->getId(),'alert');
     foreach ($parsed_json['alert'] as $key => $value) {
@@ -571,7 +571,7 @@ public function getInformations() {
         $title .= ', ' . $value;
       }
     }
-    if (!empty(is_object($forecastioCmd))) {
+    if (is_object($forecastioCmd)) {
       $forecastioCmd->setConfiguration('value',$title);
       $forecastioCmd->save();
       $forecastioCmd->event($title);
