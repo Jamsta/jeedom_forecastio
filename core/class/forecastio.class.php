@@ -472,6 +472,17 @@ public function postUpdate() {
       $forecastioCmd->save();
     }
 
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'alert');
+    if (!is_object($forecastioCmd)) {
+      $forecastioCmd = new forecastioCmd();
+      $forecastioCmd->setName(__('Alertes', __FILE__));
+      $forecastioCmd->setEqLogic_id($this->id);
+      $forecastioCmd->setLogicalId('alert');
+      $forecastioCmd->setType('info');
+      $forecastioCmd->setSubType('string');
+      $forecastioCmd->save();
+    }
+
     $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'refresh');
 		if (!is_object($forecastioCmd)) {
 			$forecastioCmd = new forecastioCmd();
@@ -491,7 +502,7 @@ public function postUpdate() {
 public function getInformations() {
   $geoloc = $this->getConfiguration('geoloc', '');
   $geolocCmd = geolocCmd::byId($geoloc);
-  $geolocval = $geolocCmd->execCmd(null, 0);
+  $geolocval = $geolocCmd->execCmd();
   $apikey = $this->getConfiguration('apikey', '');
   $url = 'https://api.forecast.io/forecast/' . $apikey .'/' . $geolocval . '?units=ca&lang=fr';
   log::add('forecastio', 'debug', $url);
@@ -552,6 +563,21 @@ public function getInformations() {
     }
   }
 
+  if ($parsed_json['alert']) {
+    $title = '';
+    $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($this->getId(),'alert');
+    foreach ($parsed_json['alert'] as $key => $value) {
+      if ($key == 'title') {
+        $title .= ', ' . $value;
+      }
+    }
+    if (!empty(is_object($forecastioCmd))) {
+      $forecastioCmd->setConfiguration('value',$title);
+      $forecastioCmd->save();
+      $forecastioCmd->event($title);
+    }
+  }
+
   return ;
 }
 
@@ -601,7 +627,7 @@ public function toHtml($_version = 'dashboard') {
       $replace['#tempid#'] = is_object($temperature_max) ? $temperature_max->getId() : '';
 
       $icone = $this->getCmd(null, 'icon_' . $j);
-      $replace['#icone#'] = is_object($icone) ? $icone->execCmd() : '';
+      $replace['#icone#'] = is_object($icone) ? $icone->getId() : '';
 
       $html_forecast .= template_replace($replace, $forcast_template);
     }
@@ -647,7 +673,7 @@ public function toHtml($_version = 'dashboard') {
   $condition = $this->getCmd(null, 'summary');
   $icone = $this->getCmd(null, 'icon');
   if (is_object($condition)) {
-    $replace['#icone#'] = $icone->execCmd();
+    $replace['#iconeid#'] = $icone->getId();
     $replace['#condition#'] = $condition->execCmd();
     $replace['#conditionid#'] = $condition->getId();
     $replace['#collectDate#'] = $condition->getCollectDate();
@@ -656,6 +682,29 @@ public function toHtml($_version = 'dashboard') {
     $replace['#condition#'] = '';
     $replace['#collectDate#'] = '';
   }
+
+  $icone = $this->getCmd(null, 'icon');
+  $replace['#icone#'] = is_object($icone) ? $icone->execCmd() : '';
+
+  $icone1 = $this->getCmd(null, 'icon_1');
+  $replace['#icone1#'] = is_object($icone1) ? $icone1->execCmd() : '';
+  $replace['#iconeid1#'] = is_object($icone1) ? $icone1->getId() : '';
+
+  $icone2 = $this->getCmd(null, 'icon_2');
+  $replace['#icone2#'] = is_object($icone2) ? $icone2->execCmd() : '';
+  $replace['#iconeid2#'] = is_object($icone2) ? $icone2->getId() : '';
+
+  $icone3 = $this->getCmd(null, 'icon_3');
+  $replace['#icone3#'] = is_object($icone3) ? $icone3->execCmd() : '';
+  $replace['#iconeid3#'] = is_object($icone3) ? $icone3->getId() : '';
+
+  $icone4 = $this->getCmd(null, 'icon_4');
+  $replace['#icone4#'] = is_object($icone4) ? $icone4->execCmd() : '';
+  $replace['#iconeid4#'] = is_object($icone4) ? $icone4->getId() : '';
+
+  $icone5 = $this->getCmd(null, 'icon_5');
+  $replace['#icone5#'] = is_object($icone5) ? $icone5->execCmd() : '';
+  $replace['#iconeid5#'] = is_object($icone5) ? $icone5->getId() : '';
 
   $parameters = $this->getDisplay('parameters');
   if (is_array($parameters)) {

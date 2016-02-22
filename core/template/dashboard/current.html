@@ -5,7 +5,7 @@
  <center class="widget-name"><strong><a href="#eqLink#" style="font-size : 1.1em;"> #city# </a></strong></center>
  <div style="position : relative; left : 15px;" class="tooltips" title="#collectDate#">
     <span class="pull-left">
-        <i class="#icone#" style="font-size: 4em;"></i>
+        <canvas id="forecastio#iconeid#" width="56" height="56"></canvas>
     </span>
     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
         <div id="windDirection#uid#" style="width: 80px; height: 80px;" class="cmd noRefresh" data-type="info" data-subtype="numeric" data-cmd_id="#windid#"></div>
@@ -21,32 +21,20 @@
 <div style="margin-top: -15px;">
     <center>#forecast#</center>
 </div>
-<canvas id="icon1" width="128" height="128"></canvas>
-<canvas id="icon2" width="128" height="128"></canvas>
+
+<script src="plugins/forecastio/desktop/js/skycons.js"></script>
 
 <script>
-  var skycons = new Skycons({"color": "pink"});
-  // on Android, a nasty hack is needed: {"resizeClear": true}
+  var skycons = new Skycons({'color':'white'});
 
-  // you can add a canvas by it's ID...
-  skycons.add("icon1", Skycons.PARTLY_CLOUDY_DAY);
+  skycons.set('forecastio#iconeid#', '#icone#');
+  skycons.set('forecastio#iconeid1#', '#icone1#');
+  skycons.set('forecastio#iconeid2#', '#icone2#');
+  skycons.set('forecastio#iconeid3#', '#icone3#');
+  skycons.set('forecastio#iconeid4#', '#icone4#');
+  skycons.set('forecastio#iconeid5#', '#icone5#');
 
-  // ...or by the canvas DOM element itself.
-  skycons.add(document.getElementById("icon2"), Skycons.RAIN);
-
-  // if you're using the Forecast API, you can also supply
-  // strings: "partly-cloudy-day" or "rain".
-
-  // start animation!
   skycons.play();
-
-  // you can also halt animation with skycons.pause()
-
-  // want to change the icon? no problem:
-  skycons.set("icon1", Skycons.PARTLY_CLOUDY_NIGHT);
-
-  // want to remove one altogether? no problem:
-  skycons.remove("icon2");
 </script>
 <script>
  $('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
