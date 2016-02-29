@@ -504,7 +504,8 @@ public function getInformations() {
   $geolocCmd = geolocCmd::byId($geoloc);
   $geolocval = $geolocCmd->execCmd();
   $apikey = $this->getConfiguration('apikey', '');
-  $url = 'https://api.forecast.io/forecast/' . $apikey .'/' . $geolocval . '?units=ca&lang=fr';
+  $lang = explode('_',config::byKey('language'));
+  $url = 'https://api.forecast.io/forecast/' . $apikey .'/' . $geolocval . '?units=ca&lang=' . $lang[0];
   log::add('forecastio', 'debug', $url);
   $json_string = file_get_contents($url);
   $parsed_json = json_decode($json_string, true);
