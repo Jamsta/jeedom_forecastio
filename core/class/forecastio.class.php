@@ -20,6 +20,8 @@ require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class forecastio extends eqLogic {
 
+  public static $_widgetPossibility = array('custom' => true);
+
   public static function cron5($_eqLogic_id = null) {
     if ($_eqLogic_id == null) {
       $eqLogics = self::byType('forecastio', true);
@@ -29,13 +31,6 @@ class forecastio extends eqLogic {
     foreach ($eqLogics as $forecastio) {
       if (null !== ($forecastio->getConfiguration('geoloc', ''))) {
         $forecastio->getInformations('5m');
-        $mc = cache::byKey('forecastioWidgetdashboard' . $forecastio->getId());
-        $mc->remove();
-        $forecastio->toHtml('dashboard');
-        $mc = cache::byKey('forecastioWidgetmobile' . $forecastio->getId());
-        $mc->remove();
-        $forecastio->toHtml('mobile');
-        $forecastio->refreshWidget();
       } else {
         log::add('forecastio', 'error', 'geoloc non saisie');
       }
@@ -51,13 +46,6 @@ class forecastio extends eqLogic {
     foreach ($eqLogics as $forecastio) {
       if (null !== ($forecastio->getConfiguration('geoloc', ''))) {
         $forecastio->getInformations('hourly');
-        $mc = cache::byKey('forecastioWidgetdashboard' . $forecastio->getId());
-        $mc->remove();
-        $forecastio->toHtml('dashboard');
-        $mc = cache::byKey('forecastioWidgetmobile' . $forecastio->getId());
-        $mc->remove();
-        $forecastio->toHtml('mobile');
-        $forecastio->refreshWidget();
       } else {
         log::add('forecastio', 'error', 'geoloc non saisie');
       }
@@ -1711,26 +1699,20 @@ class forecastio extends eqLogic {
   }
 
   public function toHtml($_version = 'dashboard') {
-    if ($this->getIsEnable() != 1) {
+    $replace = $this->preToHtml($_version);
+    if (!is_array($replace)) {
+      return $replace;
+    }
+    $version = jeedom::versionAlias($_version);
+    if ($this->getDisplay('hideOn' . $version) == 1) {
       return '';
     }
-    if (!$this->hasRight('r')) {
-      return '';
-    }
-    $_version = jeedom::versionAlias($_version);
-    if ($this->getDisplay('hideOn' . $_version) == 1) {
-      return '';
-    }
-    $mc = cache::byKey('forecastioWidget' . $_version . $this->getId());
-    if ($mc->getValue() != '') {
-      return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
-    }
+
     $html_forecast = '';
 
     if ($_version != 'mobile' || $this->getConfiguration('fullMobileDisplay', 0) == 1) {
       $forcast_template = getTemplate('core', $_version, 'forecast', 'forecastio');
       for ($i = 0; $i < 5; $i++) {
-        $replace = array();
         $replace['#day#'] = date_fr(date('l', strtotime('+' . $i . ' days')));
 
         $j = $i + 1;
@@ -1747,15 +1729,10 @@ class forecastio extends eqLogic {
         $html_forecast .= template_replace($replace, $forcast_template);
       }
     }
-    $replace = array(
-      '#id#' => $this->getId(),
-      '#city#' => $this->getName(),
-      '#collectDate#' => '',
-      '#background_color#' => $this->getBackgroundColor($_version),
-      '#eqLink#' => ($this->hasRight('w')) ? $this->getLinkToConfiguration() : '#',
-      '#forecast#' => $html_forecast,
-      '#uid#' => 'forecastio' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
-    );
+
+    $replace['#forecast#'] = $html_forecast;
+    $replace['#city#'] = $this->getName();
+
     $temperature = $this->getCmd(null, 'temperature');
     $replace['#temperature#'] = is_object($temperature) ? round($temperature->execCmd()) : '';
     $replace['#tempid#'] = is_object($temperature) ? $temperature->getId() : '';
