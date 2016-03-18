@@ -6,4 +6,5 @@
     <author>lunarok</author>
     <require>2.2.4</require>
     <category>weather</category>
+    <display>panel</display>
 </info>
