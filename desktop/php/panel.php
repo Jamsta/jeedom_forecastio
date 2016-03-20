@@ -7,133 +7,78 @@ if (!isConnect()) {
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-8">
-       <span class="statusCmd" style="position : absolute;left : 5px; width : 30px;z-index: 1030;"></span>
-       <i class='fa fa-refresh pull-right cursor refresh' style="margin-top: 3px;margin-right: 3px;"></i>
-       <span class="cmd cmd-widget" data-cmd_id="#refresh_id#" style="display:none;"></span>
-       <center class="widget-name"><strong><a href="#eqLink#" style="font-size : 1.1em;"> #city# </a></strong></center>
-       <div style="position : relative; left : 15px;" class="tooltips" title="#collectDate#">
-          <span class="pull-left">
-              <canvas id="forecastioS" width="56" height="56"></canvas>
-          </span>
-          <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
-              <div id="windDirection" style="width: 80px; height: 80px;" class="cmd noRefresh" data-type="info" data-subtype="numeric" data-cmd_id="#windid#"></div>
-              <div class="cmd noRefresh" data-type="info" data-subtype="string" data-cmd_id="#sunid#">
-                  <center style="position: relative;left:-2px;"><i class="fa fa-sun-o"></i></center>
-                  <span style="font-size: 0.8em;position: relative;left:10px;">#sunrise# | #sunset#</span>
-              </div>
-          </div>
-          <span style="margin-left: 5px;"class="cmd noRefresh" data-type="info" data-subtype="string" data-cmd_id="#conditionid#">  #condition# </span><br/>
-          <span style="margin-left: 5px;font-size: 0.8em;" class="cmd noRefresh" data-type="info" data-subtype="string" data-cmd_id="#tempid#">  #temperature# °C / #humidity# % </span><br/>
-          <span style="margin-left: 5px;font-size: 0.8em;" class="cmd noRefresh" data-type="info" data-subtype="string" data-cmd_id="#pressureid#">  #windspeed# km/h | #pressure# mb</span>
-      </div><br/>
+		<div class="col-md-12">
+			<div class="btn-group">
 
-      <script src="plugins/forecastio/desktop/js/skycons.js"></script>
+				<button class="btn btn-default" type="button">
+					EqLogic
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<center><strong> Actuellement </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-day-0" width="56" height="56"></canvas>
+		     </span>
 
-      <script>
-        var skycons = new Skycons({'color':'white'});
-
-        skycons.set('forecastioS', '#icone#');
-        skycons.set('forecastio1', '#icone1#');
-        skycons.set('forecastio2', '#icone2#');
-        skycons.set('forecastio3', '#icone3#');
-        skycons.set('forecastio4', '#icone4#');
-        skycons.set('forecastio5', '#icone5#');
-
-        skycons.play();
-      </script>
-      <script>
-
-
-       if($('#windDirection').html() != undefined){
-          new Highcharts.Chart({
-              chart: {
-                  renderTo: 'windDirection',
-                  type: 'gauge',
-                  backgroundColor: 'transparent',
-                  plotBackgroundColor: null,
-                  plotBackgroundImage: null,
-                  plotBorderWidth: 0,
-                  plotShadow: false,
-                  spacingTop: 0,
-                  spacingLeft: 0,
-                  spacingRight: 0,
-                  spacingBottom: 0
-              },
-              title: {
-                  text: null
-              },
-              credits: {
-                  enabled: false
-              },
-              pane: {
-                  startAngle: 0,
-                  endAngle: 360,
-              },
-              exporting : {
-                  enabled: false
-              },
-              plotOptions: {
-                  series: {
-                      dataLabels: {
-                          enabled: false
-                      },
-                      color: '#FFFFFF',
-                  },
-                  gauge: {
-                      dial: {
-                          radius: '90%',
-                          backgroundColor: 'silver',
-                          borderColor: 'silver',
-                          borderWidth: 1,
-                          baseWidth: 6,
-                          topWidth: 1,
-                                  baseLength: '75%', // of radius
-                                  rearLength: '15%'
-                              },
-                              pivot: {
-                                  backgroundColor: 'white',
-                                  radius: 0,
-                              }
-                          }
-                      },
-                      pane: {background: [{backgroundColor: 'transparent'}]},
-                      yAxis: {
-                          min: 0,
-                          max: 360,
-                          tickWidth: 2,
-                          tickLength: 10,
-                          tickColor: '#FFFFFF',
-                          tickInterval: 90,
-                          lineColor: '#FFFFFF',
-                          lineWidth: 4,
-                          labels: {
-                              formatter: function () {
-                                  if (this.value == 360) {
-                                      return '<span style="color : #FFFFFF;font-weight:bold;">N</span>';
-                                  } else if (this.value == 90) {
-                                      return '<span style="color : #FFFFFF;font-weight:bold;">E</span>';
-                                  } else if (this.value == 180) {
-                                      return '<span style="color : #FFFFFF;font-weight:bold;">S</span>';
-                                  } else if (this.value == 270) {
-                                      return '<span style="color : #FFFFFF;font-weight:bold;">W</span>';
-                                  }
-                              }
-                          },
-                          title: {
-                              text: null
-                          }},
-                          series: [{
-                              name: 'Vent',
-                              data: [#wind_direction#]
-                          }]
-                      });
-      }
-      </script>
-
-
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
+						 <center><div id="windspeed-day-0">10 km/h</div></center>
+		     </div>
+				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
+		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
+		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
+				 <div>
+						 <i class="fa fa-sun-o"></i>
+						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
+				 </div>
+		 </div>
 		</div>
 		<div class="col-md-4">
+			<center><strong> Dans 1H </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-day-0" width="56" height="56"></canvas>
+		     </span>
+
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
+						 <center><div id="windspeed-day-0">10 km/h</div></center>
+		     </div>
+				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
+		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
+		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
+				 <div>
+						 <i class="fa fa-sun-o"></i>
+						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
+				 </div>
+		 </div>
+		</div>
+		<div class="col-md-4">
+			<center><strong> Demain </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-day-0" width="56" height="56"></canvas>
+		     </span>
+
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
+						 <center><div id="windspeed-day-0">10 km/h</div></center>
+		     </div>
+				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
+		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
+		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
+				 <div>
+						 <i class="fa fa-sun-o"></i>
+						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
+				 </div>
+		 </div>
 		</div>
 	</div>
 	<div class="row">
@@ -141,22 +86,26 @@ if (!isConnect()) {
 			<div class="tabbable" id="tabs-58103">
 				<ul class="nav nav-tabs">
 					<li class="active">
-						<a href="#panel-320857" data-toggle="tab">Section 1</a>
+						<a href="#panel-temp" data-toggle="tab">Température</a>
 					</li>
 					<li>
-						<a href="#panel-379392" data-toggle="tab">Section 2</a>
+						<a href="#panel-humidite" data-toggle="tab">Précipitation</a>
+					</li>
+					<li>
+						<a href="#panel-vent" data-toggle="tab">Vent</a>
+					</li>
+					<li>
+						<a href="#panel-pression" data-toggle="tab">Pression</a>
 					</li>
 				</ul>
 				<div class="tab-content">
-					<div class="tab-pane active" id="panel-320857">
-						<p>
-							I'm in Section 1.
-						</p>
+					<div class="tab-pane active" id="panel-temp">
 					</div>
-					<div class="tab-pane" id="panel-379392">
-						<p>
-							Howdy, I'm in Section 2.
-						</p>
+					<div class="tab-pane" id="panel-humidite">
+					</div>
+					<div class="tab-vent" id="panel-temp">
+					</div>
+					<div class="tab-pression" id="panel-humidite">
 					</div>
 				</div>
 			</div>
@@ -164,43 +113,254 @@ if (!isConnect()) {
 	</div>
 	<div class="row">
 		<div class="col-md-4">
-			<h2>
-				J+2
-			</h2>
-			<p>
-				J+2 text
-			</p>
+			<center><strong> Jour +1 </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-day-0" width="56" height="56"></canvas>
+		     </span>
 
-			 <span class="label label-default">Pluie</span>
-			<div class="progress">
-				<div class="progress-bar progress-success">
-				</div>
-			</div>
-			<ul class="nav nav-pills">
-				<li class="active">
-					 <a href="#"> <span class="badge pull-right">42</span> Home</a>
-				</li>
-				<li>
-					 <a href="#"> <span class="badge pull-right">16</span> More</a>
-				</li>
-			</ul>
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
+						 <center><div id="windspeed-day-0">10 km/h</div></center>
+		     </div>
+				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
+		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
+		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
+				 <div>
+						 <i class="fa fa-sun-o"></i>
+						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
+				 </div>
+		 </div>
 		</div>
 		<div class="col-md-4">
-			<h2>
-				J+3
-			</h2>
-			<p>
-				text 3<br />
-			</p>
+			<center><strong> Jour +2 </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-day-0" width="56" height="56"></canvas>
+		     </span>
 
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
+						 <center><div id="windspeed-day-0">10 km/h</div></center>
+		     </div>
+				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
+		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
+		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
+				 <div>
+						 <i class="fa fa-sun-o"></i>
+						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
+				 </div>
+		 </div>
 		</div>
 		<div class="col-md-4">
-			<h2>
-				J+4
-			</h2>
-			<p>
-				text 4
-			</p>
+			<center><strong> Jour +3 </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-day-0" width="56" height="56"></canvas>
+		     </span>
+
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
+						 <center><div id="windspeed-day-0">10 km/h</div></center>
+		     </div>
+				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
+		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
+		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
+				 <div>
+						 <i class="fa fa-sun-o"></i>
+						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
+				 </div>
+		 </div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<center><strong> Jour +4 </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-day-0" width="56" height="56"></canvas>
+		     </span>
+
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
+						 <center><div id="windspeed-day-0">10 km/h</div></center>
+		     </div>
+				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
+		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
+		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
+				 <div>
+						 <i class="fa fa-sun-o"></i>
+						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
+				 </div>
+		 </div>
+		</div>
+		<div class="col-md-4">
+			<center><strong> Jour +5 </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-day-0" width="56" height="56"></canvas>
+		     </span>
+
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
+						 <center><div id="windspeed-day-0">10 km/h</div></center>
+		     </div>
+				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
+		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
+		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
+				 <div>
+						 <i class="fa fa-sun-o"></i>
+						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
+				 </div>
+		 </div>
+		</div>
+		<div class="col-md-4">
+			<center><strong> Jour +6 </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-day-0" width="56" height="56"></canvas>
+		     </span>
+
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
+						 <center><div id="windspeed-day-0">10 km/h</div></center>
+		     </div>
+				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
+		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
+		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
+				 <div>
+						 <i class="fa fa-sun-o"></i>
+						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
+				 </div>
+		 </div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
 		</div>
 	</div>
 </div>
+
+<script>
+
+	$(function () {
+
+$.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function (data) {
+	// Create the chart
+	$('#panel-temp').highcharts('StockChart', {
+
+			title : {
+					text : 'Température'
+			},
+
+			series : [{
+					name : 'Température',
+					data : data,
+					tooltip: {
+							valueDecimals: 2
+					}
+			}]
+	});
+});
+
+});
+
+if($('#windir-day-0').html() != undefined){
+	 new Highcharts.Chart({
+			 chart: {
+					 renderTo: 'windir-day-0',
+					 type: 'gauge',
+					 backgroundColor: 'transparent',
+					 plotBackgroundColor: null,
+					 plotBackgroundImage: null,
+					 plotBorderWidth: 0,
+					 plotShadow: false,
+					 spacingTop: 0,
+					 spacingLeft: 0,
+					 spacingRight: 0,
+					 spacingBottom: 0
+			 },
+			 title: {
+					 text: null
+			 },
+			 credits: {
+					 enabled: false
+			 },
+			 pane: {
+					 startAngle: 0,
+					 endAngle: 360,
+			 },
+			 exporting : {
+					 enabled: false
+			 },
+			 plotOptions: {
+					 series: {
+							 dataLabels: {
+									 enabled: false
+							 },
+							 color: '#000000',
+					 },
+					 gauge: {
+							 dial: {
+									 radius: '90%',
+									 backgroundColor: 'silver',
+									 borderColor: 'silver',
+									 borderWidth: 1,
+									 baseWidth: 6,
+									 topWidth: 1,
+													 baseLength: '75%', // of radius
+													 rearLength: '15%'
+											 },
+											 pivot: {
+													 backgroundColor: 'white',
+													 radius: 0,
+											 }
+									 }
+							 },
+							 pane: {background: [{backgroundColor: 'transparent'}]},
+							 yAxis: {
+									 min: 0,
+									 max: 360,
+									 tickWidth: 2,
+									 tickLength: 10,
+									 tickColor: '#000000',
+									 tickInterval: 90,
+									 lineColor: '#000000',
+									 lineWidth: 4,
+									 labels: {
+											 formatter: function () {
+													 if (this.value == 360) {
+															 return '<span style="color : #000000;font-weight:bold;">N</span>';
+													 } else if (this.value == 90) {
+															 return '<span style="color : #000000;font-weight:bold;">E</span>';
+													 } else if (this.value == 180) {
+															 return '<span style="color : #000000;font-weight:bold;">S</span>';
+													 } else if (this.value == 270) {
+															 return '<span style="color : #000000;font-weight:bold;">W</span>';
+													 }
+											 }
+									 },
+									 title: {
+											 text: null
+									 }},
+									 series: [{
+											 name: 'Vent',
+											 data: [120]
+									 }]
+							 });
+}
+</script>
+
+<script>
+  var skycons = new Skycons({'color':'white'});
+
+  skycons.set('icone-day-0', 'clear');
+
+  skycons.play();
+</script>
