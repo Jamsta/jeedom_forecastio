@@ -5,6 +5,10 @@ if (!isConnect()) {
 
 ?>
 
+<script src="plugins/forecastio/desktop/js/skycons.js"></script>
+
+<link rel="stylesheet" type="text/css" href="plugins/forecastio/desktop/weather-icons/css/weather-icons.min.css" />
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -19,48 +23,14 @@ if (!isConnect()) {
 	<div class="row">
 		<div class="col-md-4">
 			<center><strong> Actuellement </strong></center></br>
-			<div style="position : relative; left : 15px;">
-		     <span class="pull-left">
-		         <canvas id="icone-day-0" width="56" height="56"></canvas>
-		     </span>
 
-		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
-		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
-						 <center><div id="windspeed-day-0">10 km/h</div></center>
-		     </div>
-				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
-		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
-		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
-		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
-				 <div>
-						 <i class="fa fa-sun-o"></i>
-						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
-				 </div>
-		 </div>
 		</div>
 		<div class="col-md-4">
 			<center><strong> Dans 1H </strong></center></br>
-			<div style="position : relative; left : 15px;">
-		     <span class="pull-left">
-		         <canvas id="icone-day-0" width="56" height="56"></canvas>
-		     </span>
 
-		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
-		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
-						 <center><div id="windspeed-day-0">10 km/h</div></center>
-		     </div>
-				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
-		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
-		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
-		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
-				 <div>
-						 <i class="fa fa-sun-o"></i>
-						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
-				 </div>
-		 </div>
 		</div>
 		<div class="col-md-4">
-			<center><strong> Demain </strong></center></br>
+			<center><strong> Aujourd'hui </strong></center></br>
 			<div style="position : relative; left : 15px;">
 		     <span class="pull-left">
 		         <canvas id="icone-day-0" width="56" height="56"></canvas>
@@ -68,15 +38,15 @@ if (!isConnect()) {
 
 		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
 		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
-						 <center><div id="windspeed-day-0">10 km/h</div></center>
+						 <center><i class="wi wi-strong-wind"></i><div id="windspeed-day-0" style="margin-left: 5px;font-size: 0.8em;">10 km/h</div></center>
 		     </div>
-				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
+				 <i class="jeedom-thermo-moyen"></i><span id="temperature-day-0" style="margin-left: 5px;">  15°C </span><span id="temperature-day-0" style="margin-left: 5px;font-size: 0.8em;">(10°C) </span><br/>
 		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
-		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
-		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
+			 </br>
+		     <i class="wi wi-humidity"></i><span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;"> 50% </span><i class="wi wi-cloud"></i><span id="nuage-day-0" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><i class="wi wi-umbrella"></i><span id="precip-day-0" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><br/>
+		     <i class="wi wi-barometer"></i><span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;"> 1000mb </span> <i class="fa fa-flask"></i> <span id="ozone-day-0" style="margin-left: 5px;font-size: 0.8em;">  330DU </span>
 				 <div>
-						 <i class="fa fa-sun-o"></i>
-						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
+						 <i class="wi wi-sunrise"></i><span id="wi wi-sunrise" style="font-size: 0.8em;"> 6:00 <i class="wi wi-sunset"></i> 19:00 </span>
 				 </div>
 		 </div>
 		</div>
@@ -114,131 +84,29 @@ if (!isConnect()) {
 	<div class="row">
 		<div class="col-md-4">
 			<center><strong> Jour +1 </strong></center></br>
-			<div style="position : relative; left : 15px;">
-		     <span class="pull-left">
-		         <canvas id="icone-day-0" width="56" height="56"></canvas>
-		     </span>
 
-		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
-		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
-						 <center><div id="windspeed-day-0">10 km/h</div></center>
-		     </div>
-				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
-		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
-		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
-		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
-				 <div>
-						 <i class="fa fa-sun-o"></i>
-						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
-				 </div>
-		 </div>
 		</div>
 		<div class="col-md-4">
 			<center><strong> Jour +2 </strong></center></br>
-			<div style="position : relative; left : 15px;">
-		     <span class="pull-left">
-		         <canvas id="icone-day-0" width="56" height="56"></canvas>
-		     </span>
 
-		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
-		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
-						 <center><div id="windspeed-day-0">10 km/h</div></center>
-		     </div>
-				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
-		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
-		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
-		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
-				 <div>
-						 <i class="fa fa-sun-o"></i>
-						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
-				 </div>
-		 </div>
 		</div>
 		<div class="col-md-4">
 			<center><strong> Jour +3 </strong></center></br>
-			<div style="position : relative; left : 15px;">
-		     <span class="pull-left">
-		         <canvas id="icone-day-0" width="56" height="56"></canvas>
-		     </span>
 
-		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
-		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
-						 <center><div id="windspeed-day-0">10 km/h</div></center>
-		     </div>
-				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
-		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
-		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
-		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
-				 <div>
-						 <i class="fa fa-sun-o"></i>
-						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
-				 </div>
-		 </div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-4">
 			<center><strong> Jour +4 </strong></center></br>
-			<div style="position : relative; left : 15px;">
-		     <span class="pull-left">
-		         <canvas id="icone-day-0" width="56" height="56"></canvas>
-		     </span>
 
-		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
-		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
-						 <center><div id="windspeed-day-0">10 km/h</div></center>
-		     </div>
-				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
-		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
-		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
-		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
-				 <div>
-						 <i class="fa fa-sun-o"></i>
-						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
-				 </div>
-		 </div>
 		</div>
 		<div class="col-md-4">
 			<center><strong> Jour +5 </strong></center></br>
-			<div style="position : relative; left : 15px;">
-		     <span class="pull-left">
-		         <canvas id="icone-day-0" width="56" height="56"></canvas>
-		     </span>
 
-		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
-		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
-						 <center><div id="windspeed-day-0">10 km/h</div></center>
-		     </div>
-				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
-		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
-		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
-		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
-				 <div>
-						 <i class="fa fa-sun-o"></i>
-						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
-				 </div>
-		 </div>
 		</div>
 		<div class="col-md-4">
 			<center><strong> Jour +6 </strong></center></br>
-			<div style="position : relative; left : 15px;">
-		     <span class="pull-left">
-		         <canvas id="icone-day-0" width="56" height="56"></canvas>
-		     </span>
 
-		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
-		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
-						 <center><div id="windspeed-day-0">10 km/h</div></center>
-		     </div>
-				 <span id="temperature-day-0" style="margin-left: 5px;">  15°C (ressenti 10°C) </span><br/>
-		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
-		     <span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;">  Humidité : 50% </span><br/>
-		     <span id="pression-day-0" style="margin-left: 5px;font-size: 0.8em;">  Pression : 1000mb</span>
-				 <div>
-						 <i class="fa fa-sun-o"></i>
-						 <span id="sun-day-0" style="font-size: 0.8em;">6:00 | 19:00</span>
-				 </div>
-		 </div>
 		</div>
 	</div>
 	<div class="row">
@@ -246,6 +114,14 @@ if (!isConnect()) {
 		</div>
 	</div>
 </div>
+
+<script>
+  var skycons = new Skycons({'color':'black'});
+
+  skycons.set('icone-day-0', 'clear');
+
+  skycons.play();
+</script>
 
 <script>
 
@@ -355,12 +231,4 @@ if($('#windir-day-0').html() != undefined){
 									 }]
 							 });
 }
-</script>
-
-<script>
-  var skycons = new Skycons({'color':'white'});
-
-  skycons.set('icone-day-0', 'clear');
-
-  skycons.play();
 </script>
