@@ -1684,6 +1684,32 @@ class forecastio extends eqLogic {
     return ;
   }
 
+  public function loadingData($eqlogic) {
+    $forecastio = forecastio::byEqLogicId($eqlogic);
+    $geoloc = $forecastio->getConfiguration('geoloc', '');
+    $geolocCmd = geolocCmd::byId($geoloc);
+    $geolocval = $geolocCmd->execCmd();
+    $apikey = $forecastio->getConfiguration('apikey', '');
+    $lang = explode('_',config::byKey('language'));
+    $url = 'https://api.forecast.io/forecast/' . $apikey .'/' . $geolocval . '?units=ca&lang=' . $lang[0];
+    log::add('forecastio', 'debug', $url);
+    $json_string = file_get_contents($url);
+    $parsed_json = json_decode($json_string, true);
+    //log::add('forecastio', 'debug', print_r($json_string, true));
+    //log::add('forecastio', 'debug', print_r($parsed_json, true));
+    //log::add('forecastio', 'debug', print_r($parsed_json['currently'], true));
+    $temp = '';
+    $hum = '';
+    $wind = '';
+    $press = '';
+    foreach ($parsed_json['hourly']['data'] as $value) {
+      $temp .= '"' . $value['time'] . '":"' . $value['temperature'] . '"';
+      $hum .= '"' . $value['time'] . '":"' . $value['humidity'] . '"';
+      $wind .= '"' . $value['time'] . '":"' . $value['windSpeed'] . '"';
+      $press .= '"' . $value['time'] . '":"' . $value['pressure'] . '"';
+    }
+  }
+
   public function getGeoloc($_infos = '') {
     $return = array();
     foreach (eqLogic::byType('geoloc') as $geoloc) {

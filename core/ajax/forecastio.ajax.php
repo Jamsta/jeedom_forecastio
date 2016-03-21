@@ -28,6 +28,9 @@ try {
       ajax::success(forecastio::getGeoloc());
     }
 
+    if (init('action') == 'loadingData') {
+      ajax::success(forecastio::loadingData(init('value')));
+    }
 
     throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
     /*     * *********Catch exeption*************** */

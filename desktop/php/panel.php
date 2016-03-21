@@ -14,20 +14,65 @@ if (!isConnect()) {
 		<div class="col-md-12">
 			<div class="btn-group">
 
-				<button class="btn btn-default" type="button">
-					EqLogic
-				</button>
+				<?php
+				$first = 0;
+				$eqLogics = forecastio::byType('forecastio', true);
+				foreach ($eqLogics as $forecastio) {
+					if ($first == 0 ) {
+						echo '<button class="btn btn-success" id="' . $forecastio->getId() . '" type="button">' . $forecastio->getName() . '</button>';
+						$selected = $forecastio->getId();
+						$first = 1;
+					} else {
+						echo '<button class="btn btn-default" id="' . $forecastio->getId() . '" type="button">' . $forecastio->getName() . '</button>';
+					}
+				}
+				?>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-4">
 			<center><strong> Actuellement </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-status" width="56" height="56"></canvas>
+		     </span>
+
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-status" style="width: 80px; height: 80px;"></div>
+						 <center><i class="wi wi-strong-wind"></i><div id="windspeed-status" style="margin-left: 5px;font-size: 0.8em;">10 km/h</div></center>
+		     </div>
+				 <i class="jeedom-thermo-moyen"></i><span id="temperature-status" style="margin-left: 5px;">  15°C </span><span id="ressenti-status" style="margin-left: 5px;font-size: 0.8em;">(10°C) </span><br/>
+		     <span id="condition-status" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+			 </br>
+		     <i class="wi wi-humidity"></i><span id="humidite-status" style="margin-left: 5px;font-size: 0.8em;"> 50% </span><i class="wi wi-cloud"></i><span id="nuage-status" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><i class="wi wi-umbrella"></i><span id="precip-status" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><br/>
+		     <i class="wi wi-barometer"></i><span id="pression-status" style="margin-left: 5px;font-size: 0.8em;"> 1000mb </span> <i class="fa fa-flask"></i> <span id="ozone-status" style="margin-left: 5px;font-size: 0.8em;">  330DU </span>
+				 <div>
+						 <i class="wi wi-sunrise"></i><span id="wi wi-sunrise" style="font-size: 0.8em;"> 6:00 <i class="wi wi-sunset"></i> 19:00 </span>
+				 </div>
+		 </div>
 
 		</div>
 		<div class="col-md-4">
 			<center><strong> Dans 1H </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-hour" width="56" height="56"></canvas>
+		     </span>
 
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-hour" style="width: 80px; height: 80px;"></div>
+						 <center><i class="wi wi-strong-wind"></i><div id="windspeed-hour" style="margin-left: 5px;font-size: 0.8em;">10 km/h</div></center>
+		     </div>
+				 <i class="jeedom-thermo-moyen"></i><span id="temperature-hour" style="margin-left: 5px;">  15°C </span><span id="ressenti-hour" style="margin-left: 5px;font-size: 0.8em;">(10°C) </span><br/>
+		     <span id="condition-hour" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+			 </br>
+		     <i class="wi wi-humidity"></i><span id="humidite-hour" style="margin-left: 5px;font-size: 0.8em;"> 50% </span><i class="wi wi-cloud"></i><span id="nuage-hour" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><i class="wi wi-umbrella"></i><span id="precip-hour" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><br/>
+		     <i class="wi wi-barometer"></i><span id="pression-hour" style="margin-left: 5px;font-size: 0.8em;"> 1000mb </span> <i class="fa fa-flask"></i> <span id="ozone-hour" style="margin-left: 5px;font-size: 0.8em;">  330DU </span>
+				 <div>
+						 <i class="wi wi-sunrise"></i><span id="wi wi-sunrise" style="font-size: 0.8em;"> 6:00 <i class="wi wi-sunset"></i> 19:00 </span>
+				 </div>
+		 </div>
 		</div>
 		<div class="col-md-4">
 			<center><strong> Aujourd'hui </strong></center></br>
@@ -40,7 +85,7 @@ if (!isConnect()) {
 		         <div id="windir-day-0" style="width: 80px; height: 80px;"></div>
 						 <center><i class="wi wi-strong-wind"></i><div id="windspeed-day-0" style="margin-left: 5px;font-size: 0.8em;">10 km/h</div></center>
 		     </div>
-				 <i class="jeedom-thermo-moyen"></i><span id="temperature-day-0" style="margin-left: 5px;">  15°C </span><span id="temperature-day-0" style="margin-left: 5px;font-size: 0.8em;">(10°C) </span><br/>
+				 <i class="jeedom-thermo-moyen"></i><span id="tempmin-day-0" style="margin-left: 5px;">  15°C </span><span style="margin-left: 5px;">/</span><span id="tempmax-day-0" style="margin-left: 5px;"> 20°C </span><br/>
 		     <span id="condition-day-0" style="margin-left: 5px;">  Clair toute la journée </span><br/>
 			 </br>
 		     <i class="wi wi-humidity"></i><span id="humidite-day-0" style="margin-left: 5px;font-size: 0.8em;"> 50% </span><i class="wi wi-cloud"></i><span id="nuage-day-0" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><i class="wi wi-umbrella"></i><span id="precip-day-0" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><br/>
@@ -51,6 +96,7 @@ if (!isConnect()) {
 		 </div>
 		</div>
 	</div>
+</br>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="tabbable" id="tabs-58103">
@@ -84,29 +130,132 @@ if (!isConnect()) {
 	<div class="row">
 		<div class="col-md-4">
 			<center><strong> Jour +1 </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-day-1" width="56" height="56"></canvas>
+		     </span>
 
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-day-1" style="width: 80px; height: 80px;"></div>
+						 <center><i class="wi wi-strong-wind"></i><div id="windspeed-day-1" style="margin-left: 5px;font-size: 0.8em;">10 km/h</div></center>
+		     </div>
+				 <i class="jeedom-thermo-moyen"></i><span id="tempmin-day-1" style="margin-left: 5px;">  15°C </span><span style="margin-left: 5px;">/</span><span id="tempmax-day-1" style="margin-left: 5px;"> 20°C </span><br/>
+		     <span id="condition-day-1" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+			 </br>
+		     <i class="wi wi-humidity"></i><span id="humidite-day-1" style="margin-left: 5px;font-size: 0.8em;"> 50% </span><i class="wi wi-cloud"></i><span id="nuage-day-1" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><i class="wi wi-umbrella"></i><span id="precip-day-1" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><br/>
+		     <i class="wi wi-barometer"></i><span id="pression-day-1" style="margin-left: 5px;font-size: 0.8em;"> 1000mb </span> <i class="fa fa-flask"></i> <span id="ozone-day-1" style="margin-left: 5px;font-size: 0.8em;">  330DU </span>
+				 <div>
+						 <i class="wi wi-sunrise"></i><span id="wi wi-sunrise" style="font-size: 0.8em;"> 6:00 <i class="wi wi-sunset"></i> 19:00 </span>
+				 </div>
+		 </div>
 		</div>
 		<div class="col-md-4">
 			<center><strong> Jour +2 </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-day-2" width="56" height="56"></canvas>
+		     </span>
 
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-day-2" style="width: 80px; height: 80px;"></div>
+						 <center><i class="wi wi-strong-wind"></i><div id="windspeed-day-2" style="margin-left: 5px;font-size: 0.8em;">10 km/h</div></center>
+		     </div>
+				 <i class="jeedom-thermo-moyen"></i><span id="tempmin-day-2" style="margin-left: 5px;">  15°C </span><span style="margin-left: 5px;">/</span><span id="tempmax-day-2" style="margin-left: 5px;"> 20°C </span><br/>
+		     <span id="condition-day-2" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+			 </br>
+		     <i class="wi wi-humidity"></i><span id="humidite-day-2" style="margin-left: 5px;font-size: 0.8em;"> 50% </span><i class="wi wi-cloud"></i><span id="nuage-day-2" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><i class="wi wi-umbrella"></i><span id="precip-day-2" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><br/>
+		     <i class="wi wi-barometer"></i><span id="pression-day-2" style="margin-left: 5px;font-size: 0.8em;"> 1000mb </span> <i class="fa fa-flask"></i> <span id="ozone-day-2" style="margin-left: 5px;font-size: 0.8em;">  330DU </span>
+				 <div>
+						 <i class="wi wi-sunrise"></i><span id="wi wi-sunrise" style="font-size: 0.8em;"> 6:00 <i class="wi wi-sunset"></i> 19:00 </span>
+				 </div>
+		 </div>
 		</div>
 		<div class="col-md-4">
 			<center><strong> Jour +3 </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-day-3" width="56" height="56"></canvas>
+		     </span>
 
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-day-3" style="width: 80px; height: 80px;"></div>
+						 <center><i class="wi wi-strong-wind"></i><div id="windspeed-day-3" style="margin-left: 5px;font-size: 0.8em;">10 km/h</div></center>
+		     </div>
+				 <i class="jeedom-thermo-moyen"></i><span id="tempmin-day-3" style="margin-left: 5px;">  15°C </span><span style="margin-left: 5px;">/</span><span id="tempmax-day-3" style="margin-left: 5px;"> 20°C </span><br/>
+		     <span id="condition-day-3" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+			 </br>
+		     <i class="wi wi-humidity"></i><span id="humidite-day-3" style="margin-left: 5px;font-size: 0.8em;"> 50% </span><i class="wi wi-cloud"></i><span id="nuage-day-3" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><i class="wi wi-umbrella"></i><span id="precip-day-3" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><br/>
+		     <i class="wi wi-barometer"></i><span id="pression-day-3" style="margin-left: 5px;font-size: 0.8em;"> 1000mb </span> <i class="fa fa-flask"></i> <span id="ozone-day-3" style="margin-left: 5px;font-size: 0.8em;">  330DU </span>
+				 <div>
+						 <i class="wi wi-sunrise"></i><span id="wi wi-sunrise" style="font-size: 0.8em;"> 6:00 <i class="wi wi-sunset"></i> 19:00 </span>
+				 </div>
+		 </div>
 		</div>
 	</div>
+</br>
 	<div class="row">
 		<div class="col-md-4">
 			<center><strong> Jour +4 </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-day-4" width="56" height="56"></canvas>
+		     </span>
 
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-day-4" style="width: 80px; height: 80px;"></div>
+						 <center><i class="wi wi-strong-wind"></i><div id="windspeed-day-4" style="margin-left: 5px;font-size: 0.8em;">10 km/h</div></center>
+		     </div>
+				 <i class="jeedom-thermo-moyen"></i><span id="tempmin-day-4" style="margin-left: 5px;">  15°C </span><span style="margin-left: 5px;">/</span><span id="tempmax-day-4" style="margin-left: 5px;"> 20°C </span><br/>
+		     <span id="condition-day-4" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+			 </br>
+		     <i class="wi wi-humidity"></i><span id="humidite-day-4" style="margin-left: 5px;font-size: 0.8em;"> 50% </span><i class="wi wi-cloud"></i><span id="nuage-day-4" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><i class="wi wi-umbrella"></i><span id="precip-day-4" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><br/>
+		     <i class="wi wi-barometer"></i><span id="pression-day-4" style="margin-left: 5px;font-size: 0.8em;"> 1000mb </span> <i class="fa fa-flask"></i> <span id="ozone-day-4" style="margin-left: 5px;font-size: 0.8em;">  330DU </span>
+				 <div>
+						 <i class="wi wi-sunrise"></i><span id="wi wi-sunrise" style="font-size: 0.8em;"> 6:00 <i class="wi wi-sunset"></i> 19:00 </span>
+				 </div>
+		 </div>
 		</div>
 		<div class="col-md-4">
 			<center><strong> Jour +5 </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-day-5" width="56" height="56"></canvas>
+		     </span>
 
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-day-5" style="width: 80px; height: 80px;"></div>
+						 <center><i class="wi wi-strong-wind"></i><div id="windspeed-day-5" style="margin-left: 5px;font-size: 0.8em;">10 km/h</div></center>
+		     </div>
+				 <i class="jeedom-thermo-moyen"></i><span id="tempmin-day-5" style="margin-left: 5px;">  15°C </span><span style="margin-left: 5px;">/</span><span id="tempmax-day-5" style="margin-left: 5px;"> 20°C </span><br/>
+		     <span id="condition-day-5" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+			 </br>
+		     <i class="wi wi-humidity"></i><span id="humidite-day-5" style="margin-left: 5px;font-size: 0.8em;"> 50% </span><i class="wi wi-cloud"></i><span id="nuage-day-5" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><i class="wi wi-umbrella"></i><span id="precip-day-5" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><br/>
+		     <i class="wi wi-barometer"></i><span id="pression-day-5" style="margin-left: 5px;font-size: 0.8em;"> 1000mb </span> <i class="fa fa-flask"></i> <span id="ozone-day-5" style="margin-left: 5px;font-size: 0.8em;">  330DU </span>
+				 <div>
+						 <i class="wi wi-sunrise"></i><span id="wi wi-sunrise" style="font-size: 0.8em;"> 6:00 <i class="wi wi-sunset"></i> 19:00 </span>
+				 </div>
+		 </div>
 		</div>
 		<div class="col-md-4">
 			<center><strong> Jour +6 </strong></center></br>
+			<div style="position : relative; left : 15px;">
+		     <span class="pull-left">
+		         <canvas id="icone-day-6" width="56" height="56"></canvas>
+		     </span>
 
+		     <div class="pull-right" style="margin-right: 20px;margin-top: 0px;">
+		         <div id="windir-day-6" style="width: 80px; height: 80px;"></div>
+						 <center><i class="wi wi-strong-wind"></i><div id="windspeed-day-6" style="margin-left: 5px;font-size: 0.8em;">10 km/h</div></center>
+		     </div>
+				 <i class="jeedom-thermo-moyen"></i><span id="tempmin-day-6" style="margin-left: 5px;">  15°C </span><span style="margin-left: 5px;">/</span><span id="tempmax-day-6" style="margin-left: 5px;"> 20°C </span><br/>
+		     <span id="condition-day-6" style="margin-left: 5px;">  Clair toute la journée </span><br/>
+			 </br>
+		     <i class="wi wi-humidity"></i><span id="humidite-day-6" style="margin-left: 5px;font-size: 0.8em;"> 50% </span><i class="wi wi-cloud"></i><span id="nuage-day-6" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><i class="wi wi-umbrella"></i><span id="precip-day-6" style="margin-left: 5px;font-size: 0.8em;"> 0% </span><br/>
+		     <i class="wi wi-barometer"></i><span id="pression-day-6" style="margin-left: 5px;font-size: 0.8em;"> 1000mb </span> <i class="fa fa-flask"></i> <span id="ozone-day-6" style="margin-left: 5px;font-size: 0.8em;">  330DU </span>
+				 <div>
+						 <i class="wi wi-sunrise"></i><span id="wi wi-sunrise" style="font-size: 0.8em;"> 6:00 <i class="wi wi-sunset"></i> 19:00 </span>
+				 </div>
+		 </div>
 		</div>
 	</div>
 	<div class="row">
@@ -116,18 +265,9 @@ if (!isConnect()) {
 </div>
 
 <script>
-  var skycons = new Skycons({'color':'black'});
-
-  skycons.set('icone-day-0', 'clear');
-
-  skycons.play();
-</script>
-
-<script>
-
 	$(function () {
 
-$.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function (data) {
+	$.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function (data) {
 	// Create the chart
 	$('#panel-temp').highcharts('StockChart', {
 
@@ -143,14 +283,18 @@ $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.jso
 					}
 			}]
 	});
-});
+	});
 
-});
+	});
 
-if($('#windir-day-0').html() != undefined){
+  var skycons = new Skycons({'color':'black'});
+	var i = 0;
+	while (i < 7) {
+		skycons.set('icone-day-' + i, 'clear-day');
+
 	 new Highcharts.Chart({
 			 chart: {
-					 renderTo: 'windir-day-0',
+					 renderTo: 'windir-day-' + i,
 					 type: 'gauge',
 					 backgroundColor: 'transparent',
 					 plotBackgroundColor: null,
@@ -230,5 +374,34 @@ if($('#windir-day-0').html() != undefined){
 											 data: [120]
 									 }]
 							 });
+
+		i++;
+}
+
+skycons.set('icone-hour', 'clear-day');
+
+function loadingData(eqLogic){
+	$.ajax({// fonction permettant de faire de l'ajax
+			type: "POST", // methode de transmission des données au fichier php
+			url: "plugins/forecastio/core/ajax/forecastio.ajax.php", // url du fichier php
+			data: {
+					action: "loadingData",
+					value: eqLogic,
+			},
+			dataType: 'json',
+			error: function (request, status, error) {
+					handleAjaxError(request, status, error);
+			},
+			success: function (data) { // si l'appel a bien fonctionné
+				if (data.state != 'ok') {
+					$('#div_alert').showAlert({message: data.result, level: 'danger'});
+					return;
+				}
+
+				
+	}
+	});
+
+	skycons.play();
 }
 </script>
