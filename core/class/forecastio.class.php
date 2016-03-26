@@ -1709,14 +1709,14 @@ class forecastio extends eqLogic {
       $press .= '"' . $value['time'] . '":"' . $value['pressure'] . '"';
     }
     $status = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
-    $hour =;
-    $day0 =;
-    $day1 =;
-    $day2 =;
-    $day3 =;
-    $day4 =;
-    $day5 =;
-    $day6 =;
+    $hour = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
+    $day0 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
+    $day1 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
+    $day2 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
+    $day3 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
+    $day4 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
+    $day5 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
+    $day6 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
   }
 
   public function getGeoloc($_infos = '') {
