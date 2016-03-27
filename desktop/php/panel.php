@@ -267,120 +267,16 @@ if (!isConnect()) {
 <script>
 	$(function () {
 
-	$.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function (data) {
-	// Create the chart
-	$('#panel-temp').highcharts('StockChart', {
-
-			title : {
-					text : 'Température'
-			},
-
-			series : [{
-					name : 'Température',
-					data : data,
-					tooltip: {
-							valueDecimals: 2
-					}
-			}]
-	});
-	});
+		loadingData(
+		<?php
+			echo $selected;
+			?>);
 
 	});
-
-  var skycons = new Skycons({'color':'black'});
-	var i = 0;
-	while (i < 7) {
-		skycons.set('icone-day-' + i, 'clear-day');
-
-	 new Highcharts.Chart({
-			 chart: {
-					 renderTo: 'windir-day-' + i,
-					 type: 'gauge',
-					 backgroundColor: 'transparent',
-					 plotBackgroundColor: null,
-					 plotBackgroundImage: null,
-					 plotBorderWidth: 0,
-					 plotShadow: false,
-					 spacingTop: 0,
-					 spacingLeft: 0,
-					 spacingRight: 0,
-					 spacingBottom: 0
-			 },
-			 title: {
-					 text: null
-			 },
-			 credits: {
-					 enabled: false
-			 },
-			 pane: {
-					 startAngle: 0,
-					 endAngle: 360,
-			 },
-			 exporting : {
-					 enabled: false
-			 },
-			 plotOptions: {
-					 series: {
-							 dataLabels: {
-									 enabled: false
-							 },
-							 color: '#000000',
-					 },
-					 gauge: {
-							 dial: {
-									 radius: '90%',
-									 backgroundColor: 'silver',
-									 borderColor: 'silver',
-									 borderWidth: 1,
-									 baseWidth: 6,
-									 topWidth: 1,
-													 baseLength: '75%', // of radius
-													 rearLength: '15%'
-											 },
-											 pivot: {
-													 backgroundColor: 'white',
-													 radius: 0,
-											 }
-									 }
-							 },
-							 pane: {background: [{backgroundColor: 'transparent'}]},
-							 yAxis: {
-									 min: 0,
-									 max: 360,
-									 tickWidth: 2,
-									 tickLength: 10,
-									 tickColor: '#000000',
-									 tickInterval: 90,
-									 lineColor: '#000000',
-									 lineWidth: 4,
-									 labels: {
-											 formatter: function () {
-													 if (this.value == 360) {
-															 return '<span style="color : #000000;font-weight:bold;">N</span>';
-													 } else if (this.value == 90) {
-															 return '<span style="color : #000000;font-weight:bold;">E</span>';
-													 } else if (this.value == 180) {
-															 return '<span style="color : #000000;font-weight:bold;">S</span>';
-													 } else if (this.value == 270) {
-															 return '<span style="color : #000000;font-weight:bold;">W</span>';
-													 }
-											 }
-									 },
-									 title: {
-											 text: null
-									 }},
-									 series: [{
-											 name: 'Vent',
-											 data: [120]
-									 }]
-							 });
-
-		i++;
-}
-
-skycons.set('icone-hour', 'clear-day');
 
 function loadingData(eqLogic){
+	var skycons = new Skycons({'color':'black'});
+
 	$.ajax({// fonction permettant de faire de l'ajax
 			type: "POST", // methode de transmission des données au fichier php
 			url: "plugins/forecastio/core/ajax/forecastio.ajax.php", // url du fichier php
@@ -397,8 +293,148 @@ function loadingData(eqLogic){
 					$('#div_alert').showAlert({message: data.result, level: 'danger'});
 					return;
 				}
+				/*$('#panel-temp').highcharts('StockChart', {
 
-				
+						title : {
+								text : 'Température'
+						},
+
+						series : [{
+								name : 'Température',
+								data : data.result.temp,
+								tooltip: {
+										valueDecimals: 2
+								}
+						}]
+				});
+				$('#panel-humidite').highcharts('StockChart', {
+
+						title : {
+								text : 'Humidité'
+						},
+
+						series : [{
+								name : 'Humidité',
+								data : data.result.hum,
+								tooltip: {
+										valueDecimals: 2
+								}
+						}]
+				});
+				$('#panel-vent').highcharts('StockChart', {
+
+						title : {
+								text : 'Vent'
+						},
+
+						series : [{
+								name : 'Vent',
+								data : data.result.wind,
+								tooltip: {
+										valueDecimals: 2
+								}
+						}]
+				});
+				$('#panel-pression').highcharts('StockChart', {
+
+						title : {
+								text : 'Pression'
+						},
+
+						series : [{
+								name : 'Pression',
+								data : data.result.press,
+								tooltip: {
+										valueDecimals: 2
+								}
+						}]
+				});
+
+
+				skycons.set('icone-day-' + i, 'clear-day');
+				new Highcharts.Chart({
+		 			 chart: {
+		 					 renderTo: 'windir-day-' + i,
+		 					 type: 'gauge',
+		 					 backgroundColor: 'transparent',
+		 					 plotBackgroundColor: null,
+		 					 plotBackgroundImage: null,
+		 					 plotBorderWidth: 0,
+		 					 plotShadow: false,
+		 					 spacingTop: 0,
+		 					 spacingLeft: 0,
+		 					 spacingRight: 0,
+		 					 spacingBottom: 0
+		 			 },
+		 			 title: {
+		 					 text: null
+		 			 },
+		 			 credits: {
+		 					 enabled: false
+		 			 },
+		 			 pane: {
+		 					 startAngle: 0,
+		 					 endAngle: 360,
+		 			 },
+		 			 exporting : {
+		 					 enabled: false
+		 			 },
+		 			 plotOptions: {
+		 					 series: {
+		 							 dataLabels: {
+		 									 enabled: false
+		 							 },
+		 							 color: '#000000',
+		 					 },
+		 					 gauge: {
+		 							 dial: {
+		 									 radius: '90%',
+		 									 backgroundColor: 'silver',
+		 									 borderColor: 'silver',
+		 									 borderWidth: 1,
+		 									 baseWidth: 6,
+		 									 topWidth: 1,
+		 													 baseLength: '75%', // of radius
+		 													 rearLength: '15%'
+		 											 },
+		 											 pivot: {
+		 													 backgroundColor: 'white',
+		 													 radius: 0,
+		 											 }
+		 									 }
+		 							 },
+		 							 pane: {background: [{backgroundColor: 'transparent'}]},
+		 							 yAxis: {
+		 									 min: 0,
+		 									 max: 360,
+		 									 tickWidth: 2,
+		 									 tickLength: 10,
+		 									 tickColor: '#000000',
+		 									 tickInterval: 90,
+		 									 lineColor: '#000000',
+		 									 lineWidth: 4,
+		 									 labels: {
+		 											 formatter: function () {
+		 													 if (this.value == 360) {
+		 															 return '<span style="color : #000000;font-weight:bold;">N</span>';
+		 													 } else if (this.value == 90) {
+		 															 return '<span style="color : #000000;font-weight:bold;">E</span>';
+		 													 } else if (this.value == 180) {
+		 															 return '<span style="color : #000000;font-weight:bold;">S</span>';
+		 													 } else if (this.value == 270) {
+		 															 return '<span style="color : #000000;font-weight:bold;">W</span>';
+		 													 }
+		 											 }
+		 									 },
+		 									 title: {
+		 											 text: null
+		 									 }},
+		 									 series: [{
+		 											 name: 'Vent',
+		 											 data: [120]
+		 									 }]
+		 							 });*/
+
 	}
 	});
 

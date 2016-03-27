@@ -1691,7 +1691,8 @@ class forecastio extends eqLogic {
   }
 
   public function loadingData($eqlogic) {
-    $forecastio = forecastio::byEqLogicId($eqlogic);
+    $return = array();
+    $forecastio = forecastio::byId($eqlogic);
     $geoloc = $forecastio->getConfiguration('geoloc', '');
     $geolocCmd = geolocCmd::byId($geoloc);
     $geolocval = $geolocCmd->execCmd();
@@ -1704,18 +1705,30 @@ class forecastio extends eqLogic {
     //log::add('forecastio', 'debug', print_r($json_string, true));
     //log::add('forecastio', 'debug', print_r($parsed_json, true));
     //log::add('forecastio', 'debug', print_r($parsed_json['currently'], true));
-    $temp = '';
-    $hum = '';
-    $wind = '';
-    $press = '';
+    $temp = '[';
+    $hum = '[';
+    $wind = '[';
+    $press = '[';
     foreach ($parsed_json['hourly']['data'] as $value) {
-      $temp .= '"' . $value['time'] . '":"' . $value['temperature'] . '"';
-      $hum .= '"' . $value['time'] . '":"' . $value['humidity'] . '"';
-      $wind .= '"' . $value['time'] . '":"' . $value['windSpeed'] . '"';
-      $press .= '"' . $value['time'] . '":"' . $value['pressure'] . '"';
+      $temp .= '[' . $value['time'] . ',' . $value['temperature'] . ']';
+      $hum .= '[' . $value['time'] . ',' . $value['humidity'] . ']';
+      $wind .= '[' . $value['time'] . ',' . $value['windSpeed'] . ']';
+      $press .= '[' . $value['time'] . ',' . $value['pressure'] . ']';
     }
-    $status = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
-    $hour = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
+
+    $return['temp'] = array(
+      'value' => $temp,
+    );
+    $return['hum'] = array(
+      'value' => $hum,
+    );
+    $return['wind'] = array(
+      'value' => $wind,
+    );
+    $return['press'] = array(
+      'value' => $press,
+    );
+
     $day0 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
     $day1 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
     $day2 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
@@ -1723,6 +1736,125 @@ class forecastio extends eqLogic {
     $day4 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
     $day5 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
     $day6 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
+
+    $return['status'] = array(
+      'summary' => $parsed_json['currently']['summary'],
+      'icon' => $parsed_json['currently']['icon'],
+      'temperature' => $parsed_json['currently']['temperature'] . '°C',
+      'apparentTemperature' => $parsed_json['currently']['apparentTemperature'] . '°C',
+      'humidity' => $parsed_json['currently']['humidity']*100 . '%',
+      'precipProbability' => $parsed_json['currently']['precipProbability']*100 . '%',
+      'windSpeed' => $parsed_json['currently']['windSpeed'] . 'km/h',
+      'windBearing' => $parsed_json['currently']['windBearing'] > 179 ? $parsed_json['currently']['windBearing'] -180 : $windBearing_status = $parsed_json['currently']['windBearing'] + 180,
+      'cloudCover' => $parsed_json['currently']['cloudCover']*100 . '%',
+      'pressure' => $parsed_json['currently']['pressure'] . 'mb',
+    );
+
+    $return['hour'] = array(
+      'summary' => $parsed_json['hourly']['data']['0']['summary'],
+      'icon' => $parsed_json['hourly']['data']['0']['icon'],
+      'temperature' => $parsed_json['hourly']['data']['0']['temperature'] . '°C',
+      'apparentTemperature' => $parsed_json['hourly']['data']['0']['apparentTemperature'] . '°C',
+      'humidity' => $parsed_json['hourly']['data']['0']['humidity']*100 . '%',
+      'precipProbability' => $parsed_json['hourly']['data']['0']['precipProbability']*100 . '%',
+      'windSpeed' => $parsed_json['hourly']['data']['0']['windSpeed'] . 'km/h',
+      'windBearing' => $parsed_json['hourly']['data']['0']['windBearing'] > 179 ? $parsed_json['hourly']['data']['0']['windBearing'] -180 : $windBearing_status = $parsed_json['hourly']['data']['0']['windBearing'] + 180,
+      'cloudCover' => $parsed_json['hourly']['data']['0']['cloudCover']*100 . '%',
+      'pressure' => $parsed_json['hourly']['data']['0']['pressure'] . 'mb',
+    );
+
+    $return['day0'] = array(
+      'summary' => $parsed_json['daily']['data']['0']['summary'],
+      'icon' => $parsed_json['daily']['data']['0']['icon'],
+      'temperatureMin' => $parsed_json['daily']['data']['0']['temperatureMin'] . '°C',
+      'temperatureMax' => $parsed_json['daily']['data']['0']['temperatureMax'] . '°C',
+      'humidity' => $parsed_json['daily']['data']['0']['humidity']*100 . '%',
+      'precipProbability' => $parsed_json['daily']['data']['0']['precipProbability']*100 . '%',
+      'windSpeed' => $parsed_json['daily']['data']['0']['windSpeed'] . 'km/h',
+      'windBearing' => $parsed_json['daily']['data']['0']['windBearing'] > 179 ? $parsed_json['daily']['data']['0']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['0']['windBearing'] + 180,
+      'cloudCover' => $parsed_json['daily']['data']['0']['cloudCover']*100 . '%',
+      'pressure' => $parsed_json['daily']['data']['0']['pressure'] . 'mb',
+    );
+
+    $return['day1'] = array(
+      'summary' => $parsed_json['daily']['data']['1']['summary'],
+      'icon' => $parsed_json['daily']['data']['1']['icon'],
+      'temperatureMin' => $parsed_json['daily']['data']['1']['temperatureMin'] . '°C',
+      'temperatureMax' => $parsed_json['daily']['data']['1']['temperatureMax'] . '°C',
+      'humidity' => $parsed_json['daily']['data']['1']['humidity']*100 . '%',
+      'precipProbability' => $parsed_json['daily']['data']['1']['precipProbability']*100 . '%',
+      'windSpeed' => $parsed_json['daily']['data']['1']['windSpeed'] . 'km/h',
+      'windBearing' => $parsed_json['daily']['data']['1']['windBearing'] > 179 ? $parsed_json['daily']['data']['1']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['1']['windBearing'] + 180,
+      'cloudCover' => $parsed_json['daily']['data']['1']['cloudCover']*100 . '%',
+      'pressure' => $parsed_json['daily']['data']['1']['pressure'] . 'mb',
+    );
+
+    $return['day2'] = array(
+      'summary' => $parsed_json['daily']['data']['2']['summary'],
+      'icon' => $parsed_json['daily']['data']['2']['icon'],
+      'temperatureMin' => $parsed_json['daily']['data']['2']['temperatureMin'] . '°C',
+      'temperatureMax' => $parsed_json['daily']['data']['2']['temperatureMax'] . '°C',
+      'humidity' => $parsed_json['daily']['data']['2']['humidity']*100 . '%',
+      'precipProbability' => $parsed_json['daily']['data']['2']['precipProbability']*100 . '%',
+      'windSpeed' => $parsed_json['daily']['data']['2']['windSpeed'] . 'km/h',
+      'windBearing' => $parsed_json['daily']['data']['2']['windBearing'] > 179 ? $parsed_json['daily']['data']['2']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['2']['windBearing'] + 180,
+      'cloudCover' => $parsed_json['daily']['data']['2']['cloudCover']*100 . '%',
+      'pressure' => $parsed_json['daily']['data']['2']['pressure'] . 'mb',
+    );
+
+    $return['day3'] = array(
+      'summary' => $parsed_json['daily']['data']['3']['summary'],
+      'icon' => $parsed_json['daily']['data']['3']['icon'],
+      'temperatureMin' => $parsed_json['daily']['data']['3']['temperatureMin'] . '°C',
+      'temperatureMax' => $parsed_json['daily']['data']['3']['temperatureMax'] . '°C',
+      'humidity' => $parsed_json['daily']['data']['3']['humidity']*100 . '%',
+      'precipProbability' => $parsed_json['daily']['data']['3']['precipProbability']*100 . '%',
+      'windSpeed' => $parsed_json['daily']['data']['3']['windSpeed'] . 'km/h',
+      'windBearing' => $parsed_json['daily']['data']['3']['windBearing'] > 179 ? $parsed_json['daily']['data']['3']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['3']['windBearing'] + 180,
+      'cloudCover' => $parsed_json['daily']['data']['3']['cloudCover']*100 . '%',
+      'pressure' => $parsed_json['daily']['data']['3']['pressure'] . 'mb',
+    );
+
+    $return['day4'] = array(
+      'summary' => $parsed_json['daily']['data']['4']['summary'],
+      'icon' => $parsed_json['daily']['data']['4']['icon'],
+      'temperatureMin' => $parsed_json['daily']['data']['4']['temperatureMin'] . '°C',
+      'temperatureMax' => $parsed_json['daily']['data']['4']['temperatureMax'] . '°C',
+      'humidity' => $parsed_json['daily']['data']['4']['humidity']*100 . '%',
+      'precipProbability' => $parsed_json['daily']['data']['4']['precipProbability']*100 . '%',
+      'windSpeed' => $parsed_json['daily']['data']['4']['windSpeed'] . 'km/h',
+      'windBearing' => $parsed_json['daily']['data']['4']['windBearing'] > 179 ? $parsed_json['daily']['data']['4']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['4']['windBearing'] + 180,
+      'cloudCover' => $parsed_json['daily']['data']['4']['cloudCover']*100 . '%',
+      'pressure' => $parsed_json['daily']['data']['4']['pressure'] . 'mb',
+    );
+
+    $return['day5'] = array(
+      'summary' => $parsed_json['daily']['data']['5']['summary'],
+      'icon' => $parsed_json['daily']['data']['5']['icon'],
+      'temperatureMin' => $parsed_json['daily']['data']['5']['temperatureMin'] . '°C',
+      'temperatureMax' => $parsed_json['daily']['data']['5']['temperatureMax'] . '°C',
+      'humidity' => $parsed_json['daily']['data']['5']['humidity']*100 . '%',
+      'precipProbability' => $parsed_json['daily']['data']['5']['precipProbability']*100 . '%',
+      'windSpeed' => $parsed_json['daily']['data']['5']['windSpeed'] . 'km/h',
+      'windBearing' => $parsed_json['daily']['data']['5']['windBearing'] > 179 ? $parsed_json['daily']['data']['5']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['5']['windBearing'] + 180,
+      'cloudCover' => $parsed_json['daily']['data']['5']['cloudCover']*100 . '%',
+      'pressure' => $parsed_json['daily']['data']['5']['pressure'] . 'mb',
+    );
+
+    $return['day6'] = array(
+      'summary' => $parsed_json['daily']['data']['6']['summary'],
+      'icon' => $parsed_json['daily']['data']['6']['icon'],
+      'temperatureMin' => $parsed_json['daily']['data']['6']['temperatureMin'] . '°C',
+      'temperatureMax' => $parsed_json['daily']['data']['6']['temperatureMax'] . '°C',
+      'humidity' => $parsed_json['daily']['data']['6']['humidity']*100 . '%',
+      'precipProbability' => $parsed_json['daily']['data']['6']['precipProbability']*100 . '%',
+      'windSpeed' => $parsed_json['daily']['data']['6']['windSpeed'] . 'km/h',
+      'windBearing' => $parsed_json['daily']['data']['6']['windBearing'] > 179 ? $parsed_json['daily']['data']['6']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['6']['windBearing'] + 180,
+      'cloudCover' => $parsed_json['daily']['data']['6']['cloudCover']*100 . '%',
+      'pressure' => $parsed_json['daily']['data']['6']['pressure'] . 'mb',
+    );
+
+    return $return;
   }
 
   public function getGeoloc($_infos = '') {
