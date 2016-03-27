@@ -50,17 +50,23 @@ class forecastio extends eqLogic {
         log::add('forecastio', 'error', 'geoloc non saisie');
       }
     }
+    if (date('G')  == 3) {
+      foreach ($eqLogics as $forecastio) {
+        if (null !== ($forecastio->getConfiguration('geoloc', ''))) {
+          $forecastio->getInformations('daily');
+        } else {
+          log::add('forecastio', 'error', 'geoloc non saisie');
+        }
+      }
+    }
   }
 
-  public static function cronDaily($_eqLogic_id = null) {
-    if ($_eqLogic_id == null) {
-      $eqLogics = self::byType('forecastio', true);
-    } else {
-      $eqLogics = array(self::byId($_eqLogic_id));
-    }
-    foreach ($eqLogics as $forecastio) {
+  public static function start() {
+    foreach (self::byType('forecastio', true) as $forecastio) {
       if (null !== ($forecastio->getConfiguration('geoloc', ''))) {
         $forecastio->getInformations('daily');
+        $forecastio->getInformations('hourly');
+        $forecastio->getInformations('5m');
       } else {
         log::add('forecastio', 'error', 'geoloc non saisie');
       }
