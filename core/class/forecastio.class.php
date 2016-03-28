@@ -119,6 +119,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','actual');
+      $forecastioCmd->setUnite( 'mm/h' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'precipProbability');
@@ -131,6 +132,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','actual');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'precipType');
@@ -155,6 +157,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','actual');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'apparentTemperature');
@@ -167,6 +170,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','actual');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'dewPoint');
@@ -179,6 +183,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','actual');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'humidity');
@@ -191,6 +196,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','actual');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windSpeed');
@@ -203,6 +209,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','actual');
+      $forecastioCmd->setUnite( 'm/s' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windBearing');
@@ -215,6 +222,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','actual');
+      $forecastioCmd->setUnite( '°' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windBearing0');
@@ -227,6 +235,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','actual');
+      $forecastioCmd->setUnite( '°' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'cloudCover');
@@ -239,6 +248,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','actual');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'pressure');
@@ -251,6 +261,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','actual');
+      $forecastioCmd->setUnite( 'hPa' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'ozone');
@@ -263,6 +274,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','actual');
+      $forecastioCmd->setUnite( 'DU' );
       $forecastioCmd->save();
 
       //info H+1
@@ -300,6 +312,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h1');
+      $forecastioCmd->setUnite( 'mm/h' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'precipProbabilityh1');
@@ -312,6 +325,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h1');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'precipTypeh1');
@@ -336,6 +350,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h1');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'apparentTemperatureh1');
@@ -348,6 +363,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h1');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'dewPointh1');
@@ -360,6 +376,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h1');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'humidityh1');
@@ -372,6 +389,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h1');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windSpeedh1');
@@ -384,6 +402,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h1');
+      $forecastioCmd->setUnite( 'm/s' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windBearingh1');
@@ -396,6 +415,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h1');
+      $forecastioCmd->setUnite( '°' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windBearing0h1');
@@ -408,6 +428,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h1');
+      $forecastioCmd->setUnite( '°' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'cloudCoverh1');
@@ -420,6 +441,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h1');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'pressureh1');
@@ -432,6 +454,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h1');
+      $forecastioCmd->setUnite( 'hPa' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'ozoneh1');
@@ -444,6 +467,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h1');
+      $forecastioCmd->setUnite( 'DU' );
       $forecastioCmd->save();
 
       //status H+2
@@ -481,6 +505,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h2');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'precipProbabilityh2');
@@ -493,6 +518,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h2');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'precipTypeh2');
@@ -517,6 +543,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h2');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'apparentTemperatureh2');
@@ -529,6 +556,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h2');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'dewPointh2');
@@ -541,6 +569,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h2');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'humidityh2');
@@ -553,6 +582,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h2');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windSpeedh2');
@@ -565,6 +595,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h2');
+      $forecastioCmd->setUnite( 'm/s' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windBearingh2');
@@ -577,6 +608,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h2');
+      $forecastioCmd->setUnite( '°' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windBearing0h2');
@@ -589,6 +621,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h2');
+      $forecastioCmd->setUnite( '°' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'cloudCoverh2');
@@ -601,6 +634,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h2');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'pressureh2');
@@ -613,6 +647,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h2');
+      $forecastioCmd->setUnite( 'hPa' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'ozoneh2');
@@ -625,6 +660,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h2');
+      $forecastioCmd->setUnite( 'DU' );
       $forecastioCmd->save();
 
       //status H+3
@@ -662,6 +698,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h3');
+      $forecastioCmd->setUnite( 'mm/h' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'precipProbabilityh3');
@@ -674,6 +711,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h3');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'precipTypeh3');
@@ -698,6 +736,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h3');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'apparentTemperatureh3');
@@ -710,6 +749,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h3');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'dewPointh3');
@@ -722,6 +762,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h3');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'humidityh3');
@@ -734,6 +775,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h3');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windSpeedh3');
@@ -746,6 +788,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h3');
+      $forecastioCmd->setUnite( 'm/s' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windBearingh3');
@@ -758,6 +801,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h3');
+      $forecastioCmd->setUnite( '°' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windBearing0h3');
@@ -770,6 +814,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h3');
+      $forecastioCmd->setUnite( '°' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'cloudCoverh3');
@@ -782,6 +827,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h3');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'pressureh3');
@@ -794,6 +840,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h3');
+      $forecastioCmd->setUnite( 'hPa' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'ozoneh3');
@@ -806,6 +853,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h3');
+      $forecastioCmd->setUnite( 'DU' );
       $forecastioCmd->save();
 
       //status H+4
@@ -843,6 +891,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h4');
+      $forecastioCmd->setUnite( 'mm/h' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'precipProbabilityh4');
@@ -855,6 +904,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h4');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'precipTypeh4');
@@ -879,6 +929,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h4');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'apparentTemperatureh4');
@@ -891,6 +942,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h4');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'dewPointh4');
@@ -903,6 +955,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h4');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'humidityh4');
@@ -915,6 +968,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h4');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windSpeedh4');
@@ -927,6 +981,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h4');
+      $forecastioCmd->setUnite( 'm/s' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windBearingh4');
@@ -939,6 +994,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h4');
+      $forecastioCmd->setUnite( '°' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windBearing0h4');
@@ -951,6 +1007,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h4');
+      $forecastioCmd->setUnite( '°' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'cloudCoverh4');
@@ -963,6 +1020,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h4');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'pressureh4');
@@ -975,6 +1033,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h4');
+      $forecastioCmd->setUnite( 'hPa' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'ozoneh4');
@@ -987,6 +1046,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h4');
+      $forecastioCmd->setUnite( 'DU' );
       $forecastioCmd->save();
 
       //status H+5
@@ -1024,6 +1084,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h5');
+      $forecastioCmd->setUnite( 'mm/s' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'precipProbabilityh5');
@@ -1036,6 +1097,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h5');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'precipTypeh5');
@@ -1060,6 +1122,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h5');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'apparentTemperatureh5');
@@ -1072,6 +1135,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h5');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'dewPointh5');
@@ -1084,6 +1148,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h5');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'humidityh5');
@@ -1096,6 +1161,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h5');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windSpeedh5');
@@ -1108,6 +1174,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h5');
+      $forecastioCmd->setUnite( 'm/s' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windBearingh5');
@@ -1120,6 +1187,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h5');
+      $forecastioCmd->setUnite( '°' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'windBearing0h5');
@@ -1132,6 +1200,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h5');
+      $forecastioCmd->setUnite( '°' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'cloudCoverh5');
@@ -1144,6 +1213,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h5');
+      $forecastioCmd->setUnite( '%' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'pressureh5');
@@ -1156,6 +1226,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h5');
+      $forecastioCmd->setUnite( 'hPa' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'ozoneh5');
@@ -1168,6 +1239,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','h5');
+      $forecastioCmd->setUnite( 'DU' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'sunriseTime');
@@ -1252,6 +1324,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','daily');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'apparentTemperatureMax');
@@ -1264,6 +1337,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','daily');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMin_1');
@@ -1276,6 +1350,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','daily');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMax_1');
@@ -1288,6 +1363,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','daily');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'summary_1');
@@ -1324,6 +1400,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','daily');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMax_2');
@@ -1336,6 +1413,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','daily');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'summary_2');
@@ -1372,6 +1450,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','daily');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMax_3');
@@ -1384,6 +1463,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','daily');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'summary_3');
@@ -1420,6 +1500,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','daily');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMax_4');
@@ -1432,6 +1513,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','daily');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'summary_4');
@@ -1468,6 +1550,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','daily');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'temperatureMax_5');
@@ -1480,6 +1563,7 @@ class forecastio extends eqLogic {
         $forecastioCmd->setSubType('numeric');
       }
       $forecastioCmd->setConfiguration('category','daily');
+      $forecastioCmd->setUnite( '°C' );
       $forecastioCmd->save();
 
       $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($forecastio->getId(),'summary_5');
@@ -1705,49 +1789,27 @@ class forecastio extends eqLogic {
     //log::add('forecastio', 'debug', print_r($json_string, true));
     //log::add('forecastio', 'debug', print_r($parsed_json, true));
     //log::add('forecastio', 'debug', print_r($parsed_json['currently'], true));
-    $temp = '[';
-    $hum = '[';
-    $wind = '[';
-    $press = '[';
+
     foreach ($parsed_json['hourly']['data'] as $value) {
-      $temp .= '[' . $value['time'] . ',' . $value['temperature'] . ']';
-      $hum .= '[' . $value['time'] . ',' . $value['humidity'] . ']';
-      $wind .= '[' . $value['time'] . ',' . $value['windSpeed'] . ']';
-      $press .= '[' . $value['time'] . ',' . $value['pressure'] . ']';
+      $return['previsions']['time'][] = $value['time'] . '000';
+      $return['previsions']['temperature'][] = $value['temperature'];
+      $return['previsions']['precipIntensity'][] = $value['precipIntensity'];
+      $return['previsions']['windSpeed'][] = $value['windSpeed'];
+      $return['previsions']['pressure'][] = $value['pressure'];
     }
-
-    $return['temp'] = array(
-      'value' => $temp,
-    );
-    $return['hum'] = array(
-      'value' => $hum,
-    );
-    $return['wind'] = array(
-      'value' => $wind,
-    );
-    $return['press'] = array(
-      'value' => $press,
-    );
-
-    $day0 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
-    $day1 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
-    $day2 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
-    $day3 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
-    $day4 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
-    $day5 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
-    $day6 = '{"summary":,"icon":,"temperature":,"apparentTemperature":,"humidity":,"precipProbability":,"windSpeed":,"windBearing":,"cloudCover":,"pressure":}';
 
     $return['status'] = array(
       'summary' => $parsed_json['currently']['summary'],
       'icon' => $parsed_json['currently']['icon'],
       'temperature' => $parsed_json['currently']['temperature'] . '°C',
-      'apparentTemperature' => $parsed_json['currently']['apparentTemperature'] . '°C',
+      'apparentTemperature' => '(' . $parsed_json['currently']['apparentTemperature'] . '°C)',
       'humidity' => $parsed_json['currently']['humidity']*100 . '%',
       'precipProbability' => $parsed_json['currently']['precipProbability']*100 . '%',
       'windSpeed' => $parsed_json['currently']['windSpeed'] . 'km/h',
       'windBearing' => $parsed_json['currently']['windBearing'] > 179 ? $parsed_json['currently']['windBearing'] -180 : $windBearing_status = $parsed_json['currently']['windBearing'] + 180,
       'cloudCover' => $parsed_json['currently']['cloudCover']*100 . '%',
       'pressure' => $parsed_json['currently']['pressure'] . 'mb',
+      'ozone' => $parsed_json['currently']['ozone'] . 'DU',
     );
 
     $return['hour'] = array(
@@ -1757,10 +1819,11 @@ class forecastio extends eqLogic {
       'apparentTemperature' => $parsed_json['hourly']['data']['0']['apparentTemperature'] . '°C',
       'humidity' => $parsed_json['hourly']['data']['0']['humidity']*100 . '%',
       'precipProbability' => $parsed_json['hourly']['data']['0']['precipProbability']*100 . '%',
-      'windSpeed' => $parsed_json['hourly']['data']['0']['windSpeed'] . 'km/h',
+      'windSpeed' => $parsed_json['hourly']['data']['0']['windSpeed'] . 'm/s',
       'windBearing' => $parsed_json['hourly']['data']['0']['windBearing'] > 179 ? $parsed_json['hourly']['data']['0']['windBearing'] -180 : $windBearing_status = $parsed_json['hourly']['data']['0']['windBearing'] + 180,
       'cloudCover' => $parsed_json['hourly']['data']['0']['cloudCover']*100 . '%',
-      'pressure' => $parsed_json['hourly']['data']['0']['pressure'] . 'mb',
+      'pressure' => $parsed_json['hourly']['data']['0']['pressure'] . 'hPa',
+      'ozone' => $parsed_json['hourly']['data']['0']['ozone'] . 'DU',
     );
 
     $return['day0'] = array(
@@ -1774,6 +1837,9 @@ class forecastio extends eqLogic {
       'windBearing' => $parsed_json['daily']['data']['0']['windBearing'] > 179 ? $parsed_json['daily']['data']['0']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['0']['windBearing'] + 180,
       'cloudCover' => $parsed_json['daily']['data']['0']['cloudCover']*100 . '%',
       'pressure' => $parsed_json['daily']['data']['0']['pressure'] . 'mb',
+      'ozone' => $parsed_json['daily']['data']['0']['ozone'] . 'DU',
+      'sunriseTime' => date('H:i',$parsed_json['daily']['data']['0']['sunriseTime']),
+      'sunsetTime' => date('H:i',$parsed_json['daily']['data']['0']['sunsetTime']),
     );
 
     $return['day1'] = array(
@@ -1787,6 +1853,9 @@ class forecastio extends eqLogic {
       'windBearing' => $parsed_json['daily']['data']['1']['windBearing'] > 179 ? $parsed_json['daily']['data']['1']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['1']['windBearing'] + 180,
       'cloudCover' => $parsed_json['daily']['data']['1']['cloudCover']*100 . '%',
       'pressure' => $parsed_json['daily']['data']['1']['pressure'] . 'mb',
+      'ozone' => $parsed_json['daily']['data']['1']['ozone'] . 'DU',
+      'sunriseTime' => date('H:i',$parsed_json['daily']['data']['1']['sunriseTime']),
+      'sunsetTime' => date('H:i',$parsed_json['daily']['data']['1']['sunsetTime']),
     );
 
     $return['day2'] = array(
@@ -1800,6 +1869,9 @@ class forecastio extends eqLogic {
       'windBearing' => $parsed_json['daily']['data']['2']['windBearing'] > 179 ? $parsed_json['daily']['data']['2']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['2']['windBearing'] + 180,
       'cloudCover' => $parsed_json['daily']['data']['2']['cloudCover']*100 . '%',
       'pressure' => $parsed_json['daily']['data']['2']['pressure'] . 'mb',
+      'ozone' => $parsed_json['daily']['data']['2']['ozone'] . 'DU',
+      'sunriseTime' => date('H:i',$parsed_json['daily']['data']['2']['sunriseTime']),
+      'sunsetTime' => date('H:i',$parsed_json['daily']['data']['2']['sunsetTime']),
     );
 
     $return['day3'] = array(
@@ -1813,6 +1885,9 @@ class forecastio extends eqLogic {
       'windBearing' => $parsed_json['daily']['data']['3']['windBearing'] > 179 ? $parsed_json['daily']['data']['3']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['3']['windBearing'] + 180,
       'cloudCover' => $parsed_json['daily']['data']['3']['cloudCover']*100 . '%',
       'pressure' => $parsed_json['daily']['data']['3']['pressure'] . 'mb',
+      'ozone' => $parsed_json['daily']['data']['3']['ozone'] . 'DU',
+      'sunriseTime' => date('H:i',$parsed_json['daily']['data']['3']['sunriseTime']),
+      'sunsetTime' => date('H:i',$parsed_json['daily']['data']['3']['sunsetTime']),
     );
 
     $return['day4'] = array(
@@ -1826,6 +1901,9 @@ class forecastio extends eqLogic {
       'windBearing' => $parsed_json['daily']['data']['4']['windBearing'] > 179 ? $parsed_json['daily']['data']['4']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['4']['windBearing'] + 180,
       'cloudCover' => $parsed_json['daily']['data']['4']['cloudCover']*100 . '%',
       'pressure' => $parsed_json['daily']['data']['4']['pressure'] . 'mb',
+      'ozone' => $parsed_json['daily']['data']['4']['ozone'] . 'DU',
+      'sunriseTime' => date('H:i',$parsed_json['daily']['data']['4']['sunriseTime']),
+      'sunsetTime' => date('H:i',$parsed_json['daily']['data']['4']['sunsetTime']),
     );
 
     $return['day5'] = array(
@@ -1839,6 +1917,9 @@ class forecastio extends eqLogic {
       'windBearing' => $parsed_json['daily']['data']['5']['windBearing'] > 179 ? $parsed_json['daily']['data']['5']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['5']['windBearing'] + 180,
       'cloudCover' => $parsed_json['daily']['data']['5']['cloudCover']*100 . '%',
       'pressure' => $parsed_json['daily']['data']['5']['pressure'] . 'mb',
+      'ozone' => $parsed_json['daily']['data']['5']['ozone'] . 'DU',
+      'sunriseTime' => date('H:i',$parsed_json['daily']['data']['5']['sunriseTime']),
+      'sunsetTime' => date('H:i',$parsed_json['daily']['data']['5']['sunsetTime']),
     );
 
     $return['day6'] = array(
@@ -1852,6 +1933,9 @@ class forecastio extends eqLogic {
       'windBearing' => $parsed_json['daily']['data']['6']['windBearing'] > 179 ? $parsed_json['daily']['data']['6']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['6']['windBearing'] + 180,
       'cloudCover' => $parsed_json['daily']['data']['6']['cloudCover']*100 . '%',
       'pressure' => $parsed_json['daily']['data']['6']['pressure'] . 'mb',
+      'ozone' => $parsed_json['daily']['data']['6']['ozone'] . 'DU',
+      'sunriseTime' => date('H:i',$parsed_json['daily']['data']['6']['sunriseTime']),
+      'sunsetTime' => date('H:i',$parsed_json['daily']['data']['6']['sunsetTime']),
     );
 
     return $return;
