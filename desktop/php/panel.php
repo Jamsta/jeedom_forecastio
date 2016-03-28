@@ -81,7 +81,7 @@ if (!isConnect()) {
 			<div id="wind-day0" style="width: 80px; height: 80px;"></div>
 			<center><i class="wi wi-strong-wind"></i><div class="weather-day0" data-l1key="windSpeed" style="margin-left: 5px;font-size: 0.8em;"></div></center>
 		</div>
-		<i class="jeedom-thermo-moyen"></i><span class="weather-day0" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day0" data-l1key="temperatureMax" style="margin-left: 5px;font-size: 0.8em;"> </span><br/>
+		<i class="jeedom-thermo-moyen"></i><span class="weather-day0" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day0" data-l1key="temperatureMax" style="margin-left: 5px;"> </span><br/>
 		<span class="weather-day0" data-l1key="summary" style="margin-left: 5px;">   </span><br/>
 	</br>
 	<i class="wi wi-humidity"></i><span class="weather-day0" data-l1key="humidity" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-cloud"></i><span class="weather-day0" data-l1key="cloudCover" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-umbrella"></i><span class="weather-day0" data-l1key="precipProbability" style="margin-left: 5px;font-size: 0.8em;">  </span><br/>
@@ -113,7 +113,7 @@ if (!isConnect()) {
 				<div id="wind-day1" style="width: 80px; height: 80px;"></div>
 				<center><i class="wi wi-strong-wind"></i><div class="weather-day1" data-l1key="windSpeed" style="margin-left: 5px;font-size: 0.8em;"></div></center>
 			</div>
-			<i class="jeedom-thermo-moyen"></i><span class="weather-day1" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day1" data-l1key="temperatureMax" style="margin-left: 5px;font-size: 0.8em;"> </span><br/>
+			<i class="jeedom-thermo-moyen"></i><span class="weather-day1" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day1" data-l1key="temperatureMax" style="margin-left: 5px;"> </span><br/>
 			<span class="weather-day1" data-l1key="summary" style="margin-left: 5px;">   </span><br/>
 		</br>
 		<i class="wi wi-humidity"></i><span class="weather-day1" data-l1key="humidity" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-cloud"></i><span class="weather-day1" data-l1key="cloudCover" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-umbrella"></i><span class="weather-day1" data-l1key="precipProbability" style="margin-left: 5px;font-size: 0.8em;">  </span><br/>
@@ -135,7 +135,7 @@ if (!isConnect()) {
 			<div id="wind-day2" style="width: 80px; height: 80px;"></div>
 			<center><i class="wi wi-strong-wind"></i><div class="weather-day2" data-l1key="windSpeed" style="margin-left: 5px;font-size: 0.8em;"></div></center>
 		</div>
-		<i class="jeedom-thermo-moyen"></i><span class="weather-day2" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day2" data-l1key="temperatureMax" style="margin-left: 5px;font-size: 0.8em;"> </span><br/>
+		<i class="jeedom-thermo-moyen"></i><span class="weather-day2" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day2" data-l1key="temperatureMax" style="margin-left: 5px;"> </span><br/>
 		<span class="weather-day2" data-l1key="summary" style="margin-left: 5px;">   </span><br/>
 	</br>
 	<i class="wi wi-humidity"></i><span class="weather-day2" data-l1key="humidity" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-cloud"></i><span class="weather-day2" data-l1key="cloudCover" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-umbrella"></i><span class="weather-day2" data-l1key="precipProbability" style="margin-left: 5px;font-size: 0.8em;">  </span><br/>
@@ -157,7 +157,7 @@ if (!isConnect()) {
 			<div id="wind-day3" style="width: 80px; height: 80px;"></div>
 			<center><i class="wi wi-strong-wind"></i><div class="weather-day3" data-l1key="windSpeed" style="margin-left: 5px;font-size: 0.8em;"></div></center>
 		</div>
-		<i class="jeedom-thermo-moyen"></i><span class="weather-day3" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day3" data-l1key="temperatureMax" style="margin-left: 5px;font-size: 0.8em;"> </span><br/>
+		<i class="jeedom-thermo-moyen"></i><span class="weather-day3" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day3" data-l1key="temperatureMax" style="margin-left: 5px;"> </span><br/>
 		<span class="weather-day3" data-l1key="summary" style="margin-left: 5px;">   </span><br/>
 	</br>
 	<i class="wi wi-humidity"></i><span class="weather-day3" data-l1key="humidity" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-cloud"></i><span class="weather-day3" data-l1key="cloudCover" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-umbrella"></i><span class="weather-day3" data-l1key="precipProbability" style="margin-left: 5px;font-size: 0.8em;">  </span><br/>
@@ -182,7 +182,7 @@ if (!isConnect()) {
 				<div id="wind-day4" style="width: 80px; height: 80px;"></div>
 				<center><i class="wi wi-strong-wind"></i><div class="weather-day4" data-l1key="windSpeed" style="margin-left: 5px;font-size: 0.8em;"></div></center>
 			</div>
-			<i class="jeedom-thermo-moyen"></i><span class="weather-day4" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day4" data-l1key="temperatureMax" style="margin-left: 5px;font-size: 0.8em;"> </span><br/>
+			<i class="jeedom-thermo-moyen"></i><span class="weather-day4" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day4" data-l1key="temperatureMax" style="margin-left: 5px;"> </span><br/>
 			<span class="weather-day4" data-l1key="summary" style="margin-left: 5px;">   </span><br/>
 		</br>
 		<i class="wi wi-humidity"></i><span class="weather-day4" data-l1key="humidity" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-cloud"></i><span class="weather-day4" data-l1key="cloudCover" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-umbrella"></i><span class="weather-day4" data-l1key="precipProbability" style="margin-left: 5px;font-size: 0.8em;">  </span><br/>
@@ -204,7 +204,7 @@ if (!isConnect()) {
 			<div id="wind-day5" style="width: 80px; height: 80px;"></div>
 			<center><i class="wi wi-strong-wind"></i><div class="weather-day5" data-l1key="windSpeed" style="margin-left: 5px;font-size: 0.8em;"></div></center>
 		</div>
-		<i class="jeedom-thermo-moyen"></i><span class="weather-day5" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day5" data-l1key="temperatureMax" style="margin-left: 5px;font-size: 0.8em;"> </span><br/>
+		<i class="jeedom-thermo-moyen"></i><span class="weather-day5" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day5" data-l1key="temperatureMax" style="margin-left: 5px;"> </span><br/>
 		<span class="weather-day5" data-l1key="summary" style="margin-left: 5px;">   </span><br/>
 	</br>
 	<i class="wi wi-humidity"></i><span class="weather-day5" data-l1key="humidity" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-cloud"></i><span class="weather-day5" data-l1key="cloudCover" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-umbrella"></i><span class="weather-day5" data-l1key="precipProbability" style="margin-left: 5px;font-size: 0.8em;">  </span><br/>
@@ -226,7 +226,7 @@ if (!isConnect()) {
 			<div id="wind-day6" style="width: 80px; height: 80px;"></div>
 			<center><i class="wi wi-strong-wind"></i><div class="weather-day6" data-l1key="windSpeed" style="margin-left: 5px;font-size: 0.8em;"></div></center>
 		</div>
-		<i class="jeedom-thermo-moyen"></i><span class="weather-day6" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day6" data-l1key="temperatureMax" style="margin-left: 5px;font-size: 0.8em;"> </span><br/>
+		<i class="jeedom-thermo-moyen"></i><span class="weather-day6" data-l1key="temperatureMin" style="margin-left: 5px;">   </span> / <span class="weather-day6" data-l1key="temperatureMax" style="margin-left: 5px;"> </span><br/>
 		<span class="weather-day6" data-l1key="summary" style="margin-left: 5px;">   </span><br/>
 	</br>
 	<i class="wi wi-humidity"></i><span class="weather-day6" data-l1key="humidity" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-cloud"></i><span class="weather-day6" data-l1key="cloudCover" style="margin-left: 5px;font-size: 0.8em;">  </span><i class="wi wi-umbrella"></i><span class="weather-day6" data-l1key="precipProbability" style="margin-left: 5px;font-size: 0.8em;">  </span><br/>

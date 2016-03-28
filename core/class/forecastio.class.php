@@ -1791,7 +1791,7 @@ class forecastio extends eqLogic {
     //log::add('forecastio', 'debug', print_r($parsed_json['currently'], true));
 
     foreach ($parsed_json['hourly']['data'] as $value) {
-      $return['previsions']['time'][] = $value['time'] . '000';
+      $return['previsions']['time'][] = intval($value['time']);
       $return['previsions']['temperature'][] = $value['temperature'];
       $return['previsions']['precipIntensity'][] = $value['precipIntensity'];
       $return['previsions']['windSpeed'][] = $value['windSpeed'];
@@ -1816,7 +1816,7 @@ class forecastio extends eqLogic {
       'summary' => $parsed_json['hourly']['data']['0']['summary'],
       'icon' => $parsed_json['hourly']['data']['0']['icon'],
       'temperature' => $parsed_json['hourly']['data']['0']['temperature'] . '°C',
-      'apparentTemperature' => $parsed_json['hourly']['data']['0']['apparentTemperature'] . '°C',
+      'apparentTemperature' => '(' . $parsed_json['hourly']['data']['0']['apparentTemperature'] . '°C)',
       'humidity' => $parsed_json['hourly']['data']['0']['humidity']*100 . '%',
       'precipProbability' => $parsed_json['hourly']['data']['0']['precipProbability']*100 . '%',
       'windSpeed' => $parsed_json['hourly']['data']['0']['windSpeed'] . 'm/s',
