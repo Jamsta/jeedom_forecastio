@@ -369,49 +369,53 @@ $(function () {
 			credits: {
 				enabled: false
 			},
-			series: [
+			xAxis: {
+				categories: [],
+				labels: {
+					rotation: -45,
+					y: 20
+				}
+			},
+			series: [{
+				name: 'Température',
+				tooltip: {
+					valueSuffix: ' °C'
+				},
+				color: '#FF3333',
+				negativeColor: '#48AFE8',
+				data: []
+			},
+			{
+				name: 'Précipitations',
+				type: 'column',
+				color: '#68CFE8',
+				yAxis: 1,
+				tooltip: {
+					valueSuffix: ' mn'
+				},
+				data: []
+			},
+			{
+				name: 'Pression',
+				yAxis: 2,
+				tooltip: {
+					valueSuffix: ' hPa'
+				},
+				data: []
+			}
 			],
-		};
-		var valTemp = {
-			name: 'Température',
-			tooltip: {
-				valueSuffix: ' °C'
-			},
-			color: '#FF3333',
-			negativeColor: '#48AFE8',
-			data: []
-		};
-		var valRain = {
-			name: 'Précipitations',
-			type: 'column',
-			color: '#68CFE8',
-			yAxis: 1,
-			tooltip: {
-				valueSuffix: ' mn'
-			},
-			data: []
-		};
-		var valPress = {
-			name: 'Pression',
-			yAxis: 2,
-			tooltip: {
-				valueSuffix: ' hPa'
-			},
-			data: []
 		};
 
 		for (var i in data.result.previsions.time) {
 			//console.log(data.result.previsions.temperature[i]);
 			var date = new Date(parseInt(data.result.previsions.time[i]));
-			console.log(date);
-			valTemp.data.push([date,parseFloat(data.result.previsions.temperature[i],2)]);
-			valRain.data.push([date,parseFloat(data.result.previsions.precipIntensity[i],2)]);
-			valPress.data.push([date,parseInt(data.result.previsions.pressure[i])]);
-		};
+			var displayDate = date.getDate() + '/' + (date.getMonth()+1) + ' ' + date.getHours() + ':' + date.getMinutes();
+			options.series[0].data.push(parseFloat(data.result.previsions.temperature[i],2));
+			options.series[1].data.push(parseFloat(data.result.previsions.precipIntensity[i],2));
+			options.series[2].data.push(parseInt(data.result.previsions.pressure[i]));
+			options.xAxis.categories.push(displayDate);
 
-		options.series.push(valTemp);
-		options.series.push(valRain);
-		options.series.push(valPress);
+		};
 
 		var chart = new Highcharts.Chart(options);
 

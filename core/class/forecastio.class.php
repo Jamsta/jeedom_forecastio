@@ -1779,7 +1779,7 @@ class forecastio extends eqLogic {
     $forecastio = forecastio::byId($eqlogic);
     $geoloc = $forecastio->getConfiguration('geoloc', '');
     $geolocCmd = geolocCmd::byId($geoloc);
-    $geolocval = $geolocCmd->execCmd();
+    $geolocval = trim($geolocCmd->execCmd());
     $apikey = $forecastio->getConfiguration('apikey', '');
     $lang = explode('_',config::byKey('language'));
     $url = 'https://api.forecast.io/forecast/' . $apikey .'/' . $geolocval . '?units=ca&lang=' . $lang[0];
