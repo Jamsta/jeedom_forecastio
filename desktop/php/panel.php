@@ -335,122 +335,45 @@ $(function () {
 
 		var options = {
 			title : {	text : 'Prévisions'	},
+			subtitle: {
+				text: 'Température, pression et précipitation des 48h',
+				x: -20
+			},
 			chart: { renderTo: 'previsions' },
-			xAxis: [{ // Bottom X axis
-            type: 'datetime',
-            tickInterval: 2 * 36e5, // two hours
-            minorTickInterval: 36e5, // one hour
-            tickLength: 0,
-            gridLineWidth: 1,
-            gridLineColor: (Highcharts.theme && Highcharts.theme.background2) || '#F0F0F0',
-            startOnTick: false,
-            endOnTick: false,
-            minPadding: 0,
-            maxPadding: 0,
-            offset: 30,
-            showLastLabel: true,
-            labels: {
-                format: '{value:%H}'
-            }
-        }, { // Top X axis
-            linkedTo: 0,
-            type: 'datetime',
-            tickInterval: 24 * 3600 * 1000,
-            labels: {
-                format: '{value:<span style="font-size: 12px; font-weight: bold">%a</span> %b %e}',
-                align: 'left',
-                x: 3,
-                y: -5
-            },
-            opposite: true,
-            tickLength: 20,
-            gridLineWidth: 1
-        }],
+			xAxis: {
+				type: 'datetime',
+			},
 
-				yAxis: [{ // temperature axis
-	            title: {
-	                text: null
-	            },
-	            labels: {
-	                format: '{value}°',
-	                style: {
-	                    fontSize: '10px'
-	                },
-	                x: -3
-	            },
-	            plotLines: [{ // zero plane
-	                value: 0,
-	                color: '#BBBBBB',
-	                width: 1,
-	                zIndex: 2
-	            }],
-	            // Custom positioner to provide even temperature ticks from top down
-	            tickPositioner: function () {
-	                var max = Math.ceil(this.max) + 1,
-	                    pos = max - 12, // start
-	                    ret;
-
-	                if (pos < this.min) {
-	                    ret = [];
-	                    while (pos <= max) {
-	                        ret.push(pos += 1);
-	                    }
-	                } // else return undefined and go auto
-
-	                return ret;
-
-	            },
-	            maxPadding: 0.3,
-	            tickInterval: 1,
-	            gridLineColor: (Highcharts.theme && Highcharts.theme.background2) || '#F0F0F0'
-
-	        }, { // precipitation axis
-	            title: {
-	                text: null
-	            },
-	            labels: {
-	                enabled: false
-	            },
-	            gridLineWidth: 0,
-	            tickLength: 0
-
-	        }, { // Air pressure
-	            allowDecimals: false,
-	            title: { // Title on top of axis
-	                text: 'hPa',
-	                offset: 0,
-	                align: 'high',
-	                rotation: 0,
-	                style: {
-	                    fontSize: '10px',
-	                    color: Highcharts.getOptions().colors[2]
-	                },
-	                textAlign: 'left',
-	                x: 3
-	            },
-	            labels: {
-	                style: {
-	                    fontSize: '8px',
-	                    color: Highcharts.getOptions().colors[2]
-	                },
-	                y: 2,
-	                x: 3
-	            },
-	            gridLineWidth: 0,
-	            opposite: true,
-	            showLastLabel: false
-	        }],
-
-	        legend: {
-	            enabled: false
-	        },
-
+			yAxis: [{ // temperature axis
+				title: {
+					text: 'Température (°C)'
+				},
+			}, { // precipitation axis
+				title: {
+					text: null
+				},
+				labels: {
+					enabled: false
+				},
+				gridLineWidth: 0,
+				tickLength: 0
+			}, { // Air pressure
+				allowDecimals: false,
+				title: { // Title on top of axis
+					text: 'Pression (hPa)',
+				},
+				gridLineWidth: 0,
+				opposite: true,
+				showLastLabel: false
+			}],
+			credits: {
+				enabled: false
+			},
 			series: [
-				],
+			],
 		};
 		var valTemp = {
 			name: 'Température',
-			dashStyle: 'spline',
 			tooltip: {
 				valueSuffix: ' °C'
 			},
@@ -461,7 +384,7 @@ $(function () {
 		var valRain = {
 			name: 'Précipitations',
 			type: 'column',
-      color: '#68CFE8',
+			color: '#68CFE8',
 			yAxis: 1,
 			tooltip: {
 				valueSuffix: ' mn'
@@ -470,8 +393,7 @@ $(function () {
 		};
 		var valPress = {
 			name: 'Pression',
-			dashStyle: 'shortdot',
-      yAxis: 2,
+			yAxis: 2,
 			tooltip: {
 				valueSuffix: ' hPa'
 			},
@@ -480,9 +402,11 @@ $(function () {
 
 		for (var i in data.result.previsions.time) {
 			//console.log(data.result.previsions.temperature[i]);
-			valTemp.data.push(data.result.previsions.time[i], parseFloat(data.result.previsions.temperature[i],2));
-			valRain.data.push(data.result.previsions.time[i], parseFloat(data.result.previsions.precipIntensity[i],2));
-			valPress.data.push(data.result.previsions.time[i], parseInt(data.result.previsions.pressure[i]));
+			var date = new Date(parseInt(data.result.previsions.time[i]));
+			console.log(date);
+			valTemp.data.push([date,parseFloat(data.result.previsions.temperature[i],2)]);
+			valRain.data.push([date,parseFloat(data.result.previsions.precipIntensity[i],2)]);
+			valPress.data.push([date,parseInt(data.result.previsions.pressure[i])]);
 		};
 
 		options.series.push(valTemp);

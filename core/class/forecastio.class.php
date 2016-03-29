@@ -1791,7 +1791,7 @@ class forecastio extends eqLogic {
     //log::add('forecastio', 'debug', print_r($parsed_json['currently'], true));
 
     foreach ($parsed_json['hourly']['data'] as $value) {
-      $return['previsions']['time'][] = intval($value['time']);
+      $return['previsions']['time'][] = $value['time'] . '000';
       $return['previsions']['temperature'][] = $value['temperature'];
       $return['previsions']['precipIntensity'][] = $value['precipIntensity'];
       $return['previsions']['windSpeed'][] = $value['windSpeed'];
