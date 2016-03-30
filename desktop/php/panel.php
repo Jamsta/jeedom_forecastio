@@ -19,12 +19,10 @@ if (!isConnect()) {
 				$eqLogics = forecastio::byType('forecastio', true);
 				foreach ($eqLogics as $forecastio) {
 					if ($first == 0 ) {
-						echo '<button class="btn btn-success" id="' . $forecastio->getId() . '" type="button">' . $forecastio->getName() . '</button>';
 						$selected = $forecastio->getId();
 						$first = 1;
-					} else {
-						echo '<button class="btn btn-default" id="' . $forecastio->getId() . '" type="button">' . $forecastio->getName() . '</button>';
 					}
+					echo '<button class="btn btn-default forecastioEqlogic" id="' . $forecastio->getId() . '" type="button" onClick="loadingData(' . $forecastio->getId() . ')">' . $forecastio->getName() . '</button>';
 				}
 				?>
 			</div>
@@ -272,6 +270,12 @@ $(function () {
 			$('#div_alert').showAlert({message: data.result, level: 'danger'});
 			return;
 		}
+
+		$('.forecastioEqlogic').removeClass('btn-success');
+		$('.forecastioEqlogic').addClass('btn-default');
+		$('#' + eqLogic).removeClass('btn-default');
+		$('#' + eqLogic).addClass('btn-success');
+
 		$('.weather-status').value('');
 		for (var i in data.result.status) {
 			$('.weather-status[data-l1key=' + i + ']').value(data.result.status[i]);

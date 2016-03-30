@@ -9,3 +9,9 @@ Oui, le plugin récupère les valeurs de Forecast.io
 --
 Oui, il utilise un équipement du plugin geoloc.
 --
+
+[panel,primary]
+.Comment utiliser les informations de lever/coucher du soleil ?
+--
+Il faut utiliser un scénario avec pour déclencheur le lever ou coucher du soleil. Puis utiliser des blocs à condition 'A'
+--

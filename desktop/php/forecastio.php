@@ -24,7 +24,7 @@ $eqLogics = eqLogic::byType('forecastio');
   </div>
 
   <div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
-    <legend>{{Mes forecastio}}
+    <legend><i class="fa fa-cloud"></i>  {{Mes Forecast.io}}
     </legend>
     <div class="eqLogicThumbnailContainer">
       <div class="cursor eqLogicAction" data-action="add" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
@@ -57,7 +57,7 @@ $eqLogics = eqLogic::byType('forecastio');
               <i class='fa fa-cogs eqLogicAction pull-right cursor expertModeVisible' data-action='configure'></i>
             </legend>
             <div class="form-group">
-              <label class="col-md-2 control-label">{{Héliotrope}}</label>
+              <label class="col-md-2 control-label">{{Nom de l'équipement}}</label>
               <div class="col-md-3">
                 <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
                 <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement forecastio}}"/>
@@ -112,13 +112,12 @@ $eqLogics = eqLogic::byType('forecastio');
       <div id="infoNode" class="col-sm-6">
         <form class="form-horizontal">
           <fieldset>
-            <legend>{{Configuration}}</legend>
+            <legend><i class="fa fa-info-circle"></i>  {{Configuration}}</legend>
 
             <div class="form-group">
               <label class="col-md-2 control-label">{{Géolocalisation}}</label>
               <div class="col-md-3">
                 <select class="form-control eqLogicAttr configuration" id="geoloc" data-l1key="configuration" data-l2key="geoloc">
-                  <option value="none">{{Aucun}}</option>
                   <?php
                   if (class_exists('geolocCmd')) {
                     foreach (eqLogic::byType('geoloc') as $geoloc) {
@@ -129,7 +128,7 @@ $eqLogics = eqLogic::byType('forecastio');
                       }
                     }
                   } else {
-                    echo '<option value="">Geoloc absent</option>';
+                    echo '<option value="none">Geoloc absent</option>';
                   }
                   ?>
                 </select>
@@ -148,7 +147,17 @@ $eqLogics = eqLogic::byType('forecastio');
       </div>
     </div>
 
-    <legend>{{Conditions Actuelles}}</legend>
+    <form class="form-horizontal">
+      <fieldset>
+        <div class="form-actions">
+          <a class="btn btn-danger eqLogicAction" data-action="remove"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+          <a class="btn btn-success eqLogicAction" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+        </div>
+      </fieldset>
+    </form>
+  </br>
+
+    <legend><i class="fa fa-cloud"></i>  {{Conditions Actuelles}}</legend>
 
     <table id="table_cmd" class="table table-bordered table-condensed">
       <thead>
@@ -165,7 +174,7 @@ $eqLogics = eqLogic::byType('forecastio');
       </tbody>
     </table>
 
-    <legend>{{Prévisions 24H}}</legend>
+    <legend><i class="fa fa-cloud"></i>  {{Prévisions 24H}}</legend>
 
     <table id="24h_cmd" class="table table-bordered table-condensed">
       <thead>
@@ -182,7 +191,7 @@ $eqLogics = eqLogic::byType('forecastio');
       </tbody>
     </table>
 
-    <legend>{{Prévisions H+1}}</legend>
+    <legend><i class="fa fa-cloud"></i>  {{Prévisions H+1}}</legend>
 
     <table id="h1_cmd" class="table table-bordered table-condensed">
       <thead>
@@ -199,7 +208,7 @@ $eqLogics = eqLogic::byType('forecastio');
       </tbody>
     </table>
 
-    <legend>{{Prévisions H+2}}</legend>
+    <legend><i class="fa fa-cloud"></i>  {{Prévisions H+2}}</legend>
 
     <table id="h2_cmd" class="table table-bordered table-condensed">
       <thead>
@@ -216,7 +225,7 @@ $eqLogics = eqLogic::byType('forecastio');
       </tbody>
     </table>
 
-    <legend>{{Prévisions H+3}}</legend>
+    <legend><i class="fa fa-cloud"></i>  {{Prévisions H+3}}</legend>
 
     <table id="h3_cmd" class="table table-bordered table-condensed">
       <thead>
@@ -233,7 +242,7 @@ $eqLogics = eqLogic::byType('forecastio');
       </tbody>
     </table>
 
-    <legend>{{Prévisions H+4}}</legend>
+    <legend><i class="fa fa-cloud"></i>  {{Prévisions H+4}}</legend>
 
     <table id="h4_cmd" class="table table-bordered table-condensed">
       <thead>
@@ -250,7 +259,7 @@ $eqLogics = eqLogic::byType('forecastio');
       </tbody>
     </table>
 
-    <legend>{{Prévisions H+5}}</legend>
+    <legend><i class="fa fa-cloud"></i>  {{Prévisions H+5}}</legend>
 
     <table id="h5_cmd" class="table table-bordered table-condensed">
       <thead>
