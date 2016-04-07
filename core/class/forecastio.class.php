@@ -2072,7 +2072,7 @@ class forecastio extends eqLogic {
       }
     }
 
-    $html = template_replace($replace, getTemplate('core', $_version, 'current', 'forecastio'));
+    $html = template_replace($replace, getTemplate('core', $version, 'current', 'forecastio'));
     cache::set('forecastioWidget' . $_version . $this->getId(), $html, 0);
     return $html;
   }
