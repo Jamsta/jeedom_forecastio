@@ -1978,7 +1978,7 @@ class forecastio extends eqLogic {
     $html_forecast = '';
 
     if ($_version != 'mobile' || $this->getConfiguration('fullMobileDisplay', 0) == 1) {
-      $forcast_template = getTemplate('core', $_version, 'forecast', 'forecastio');
+      $forcast_template = getTemplate('core', $version, 'forecast', 'forecastio');
       for ($i = 0; $i < 5; $i++) {
         $replace['#day#'] = date_fr(date('l', strtotime('+' . $i . ' days')));
 
