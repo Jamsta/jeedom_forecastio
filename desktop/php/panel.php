@@ -9,7 +9,7 @@ if (!isConnect()) {
 
 <link rel="stylesheet" type="text/css" href="plugins/forecastio/desktop/weather-icons/css/weather-icons.min.css" />
 
-<div class="container-fluid">
+<div class="container-fluid forecastio-panel">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="btn-group">
