@@ -1776,7 +1776,7 @@ class forecastio extends eqLogic {
       }
     }
 
-    return ;
+    $this->refreshWidget();
   }
 
   public function loadingData($eqlogic) {
@@ -2003,6 +2003,10 @@ class forecastio extends eqLogic {
     $temperature = $this->getCmd(null, 'temperature');
     $replace['#temperature#'] = is_object($temperature) ? round($temperature->execCmd()) : '';
     $replace['#tempid#'] = is_object($temperature) ? $temperature->getId() : '';
+
+    $conditionday = $this->getCmd(null, 'summaryhours');
+    $replace['#conditionday#'] = is_object($conditionday) ? $conditionday->execCmd() : '';
+    $replace['#conditiondayid#'] = is_object($conditionday) ? $conditionday->getId() : '';
 
     $humidity = $this->getCmd(null, 'humidity');
     $replace['#humidity#'] = is_object($humidity) ? $humidity->execCmd() : '';

@@ -15,4 +15,14 @@
 			jeedom.cmd.execute({id: '#refresh_id#'});
 		});
 	</script>
+
+	<script src="plugins/forecastio/desktop/js/skycons.js"></script>
+
+	<script>
+	  var skycons = new Skycons({'color':'white'});
+
+	  skycons.set('forecastio#iconeid#', '#icone#');
+
+	  skycons.play();
+	</script>
 </div>
