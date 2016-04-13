@@ -208,7 +208,7 @@ class forecastio extends eqLogic {
       $forecastioCmd->setSubType('numeric');
     }
     $forecastioCmd->setConfiguration('category','actual');
-    $forecastioCmd->setUnite( 'm/s' );
+    $forecastioCmd->setUnite( 'km/h' );
     $forecastioCmd->save();
 
     $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($this->getId(),'windBearing');
@@ -401,7 +401,7 @@ class forecastio extends eqLogic {
       $forecastioCmd->setSubType('numeric');
     }
     $forecastioCmd->setConfiguration('category','h1');
-    $forecastioCmd->setUnite( 'm/s' );
+    $forecastioCmd->setUnite( 'km/h' );
     $forecastioCmd->save();
 
     $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($this->getId(),'windBearingh1');
@@ -594,7 +594,7 @@ class forecastio extends eqLogic {
       $forecastioCmd->setSubType('numeric');
     }
     $forecastioCmd->setConfiguration('category','h2');
-    $forecastioCmd->setUnite( 'm/s' );
+    $forecastioCmd->setUnite( 'km/h' );
     $forecastioCmd->save();
 
     $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($this->getId(),'windBearingh2');
@@ -787,7 +787,7 @@ class forecastio extends eqLogic {
       $forecastioCmd->setSubType('numeric');
     }
     $forecastioCmd->setConfiguration('category','h3');
-    $forecastioCmd->setUnite( 'm/s' );
+    $forecastioCmd->setUnite( 'km/h' );
     $forecastioCmd->save();
 
     $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($this->getId(),'windBearingh3');
@@ -980,7 +980,7 @@ class forecastio extends eqLogic {
       $forecastioCmd->setSubType('numeric');
     }
     $forecastioCmd->setConfiguration('category','h4');
-    $forecastioCmd->setUnite( 'm/s' );
+    $forecastioCmd->setUnite( 'km/h' );
     $forecastioCmd->save();
 
     $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($this->getId(),'windBearingh4');
@@ -1083,7 +1083,7 @@ class forecastio extends eqLogic {
       $forecastioCmd->setSubType('numeric');
     }
     $forecastioCmd->setConfiguration('category','h5');
-    $forecastioCmd->setUnite( 'mm/s' );
+    $forecastioCmd->setUnite( 'mkm/h' );
     $forecastioCmd->save();
 
     $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($this->getId(),'precipProbabilityh5');
@@ -1173,7 +1173,7 @@ class forecastio extends eqLogic {
       $forecastioCmd->setSubType('numeric');
     }
     $forecastioCmd->setConfiguration('category','h5');
-    $forecastioCmd->setUnite( 'm/s' );
+    $forecastioCmd->setUnite( 'km/h' );
     $forecastioCmd->save();
 
     $forecastioCmd = forecastioCmd::byEqLogicIdAndLogicalId($this->getId(),'windBearingh5');
@@ -1818,7 +1818,7 @@ class forecastio extends eqLogic {
       'windSpeed' => $parsed_json['currently']['windSpeed'] . 'km/h',
       'windBearing' => $parsed_json['currently']['windBearing'] > 179 ? $parsed_json['currently']['windBearing'] -180 : $windBearing_status = $parsed_json['currently']['windBearing'] + 180,
       'cloudCover' => $parsed_json['currently']['cloudCover']*100 . '%',
-      'pressure' => $parsed_json['currently']['pressure'] . 'mb',
+      'pressure' => $parsed_json['currently']['pressure'] . 'hPa',
       'ozone' => $parsed_json['currently']['ozone'] . 'DU',
     );
 
@@ -1829,7 +1829,7 @@ class forecastio extends eqLogic {
       'apparentTemperature' => '(' . $parsed_json['hourly']['data']['0']['apparentTemperature'] . '°C)',
       'humidity' => $parsed_json['hourly']['data']['0']['humidity']*100 . '%',
       'precipProbability' => $parsed_json['hourly']['data']['0']['precipProbability']*100 . '%',
-      'windSpeed' => $parsed_json['hourly']['data']['0']['windSpeed'] . 'm/s',
+      'windSpeed' => $parsed_json['hourly']['data']['0']['windSpeed'] . 'km/h',
       'windBearing' => $parsed_json['hourly']['data']['0']['windBearing'] > 179 ? $parsed_json['hourly']['data']['0']['windBearing'] -180 : $windBearing_status = $parsed_json['hourly']['data']['0']['windBearing'] + 180,
       'cloudCover' => $parsed_json['hourly']['data']['0']['cloudCover']*100 . '%',
       'pressure' => $parsed_json['hourly']['data']['0']['pressure'] . 'hPa',
@@ -1846,7 +1846,7 @@ class forecastio extends eqLogic {
       'windSpeed' => $parsed_json['daily']['data']['0']['windSpeed'] . 'km/h',
       'windBearing' => $parsed_json['daily']['data']['0']['windBearing'] > 179 ? $parsed_json['daily']['data']['0']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['0']['windBearing'] + 180,
       'cloudCover' => $parsed_json['daily']['data']['0']['cloudCover']*100 . '%',
-      'pressure' => $parsed_json['daily']['data']['0']['pressure'] . 'mb',
+      'pressure' => $parsed_json['daily']['data']['0']['pressure'] . 'hPa',
       'ozone' => $parsed_json['daily']['data']['0']['ozone'] . 'DU',
       'sunriseTime' => date('H:i',$parsed_json['daily']['data']['0']['sunriseTime']),
       'sunsetTime' => date('H:i',$parsed_json['daily']['data']['0']['sunsetTime']),
@@ -1862,7 +1862,7 @@ class forecastio extends eqLogic {
       'windSpeed' => $parsed_json['daily']['data']['1']['windSpeed'] . 'km/h',
       'windBearing' => $parsed_json['daily']['data']['1']['windBearing'] > 179 ? $parsed_json['daily']['data']['1']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['1']['windBearing'] + 180,
       'cloudCover' => $parsed_json['daily']['data']['1']['cloudCover']*100 . '%',
-      'pressure' => $parsed_json['daily']['data']['1']['pressure'] . 'mb',
+      'pressure' => $parsed_json['daily']['data']['1']['pressure'] . 'hPa',
       'ozone' => $parsed_json['daily']['data']['1']['ozone'] . 'DU',
       'sunriseTime' => date('H:i',$parsed_json['daily']['data']['1']['sunriseTime']),
       'sunsetTime' => date('H:i',$parsed_json['daily']['data']['1']['sunsetTime']),
@@ -1878,7 +1878,7 @@ class forecastio extends eqLogic {
       'windSpeed' => $parsed_json['daily']['data']['2']['windSpeed'] . 'km/h',
       'windBearing' => $parsed_json['daily']['data']['2']['windBearing'] > 179 ? $parsed_json['daily']['data']['2']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['2']['windBearing'] + 180,
       'cloudCover' => $parsed_json['daily']['data']['2']['cloudCover']*100 . '%',
-      'pressure' => $parsed_json['daily']['data']['2']['pressure'] . 'mb',
+      'pressure' => $parsed_json['daily']['data']['2']['pressure'] . 'hPa',
       'ozone' => $parsed_json['daily']['data']['2']['ozone'] . 'DU',
       'sunriseTime' => date('H:i',$parsed_json['daily']['data']['2']['sunriseTime']),
       'sunsetTime' => date('H:i',$parsed_json['daily']['data']['2']['sunsetTime']),
@@ -1894,7 +1894,7 @@ class forecastio extends eqLogic {
       'windSpeed' => $parsed_json['daily']['data']['3']['windSpeed'] . 'km/h',
       'windBearing' => $parsed_json['daily']['data']['3']['windBearing'] > 179 ? $parsed_json['daily']['data']['3']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['3']['windBearing'] + 180,
       'cloudCover' => $parsed_json['daily']['data']['3']['cloudCover']*100 . '%',
-      'pressure' => $parsed_json['daily']['data']['3']['pressure'] . 'mb',
+      'pressure' => $parsed_json['daily']['data']['3']['pressure'] . 'hPa',
       'ozone' => $parsed_json['daily']['data']['3']['ozone'] . 'DU',
       'sunriseTime' => date('H:i',$parsed_json['daily']['data']['3']['sunriseTime']),
       'sunsetTime' => date('H:i',$parsed_json['daily']['data']['3']['sunsetTime']),
@@ -1910,7 +1910,7 @@ class forecastio extends eqLogic {
       'windSpeed' => $parsed_json['daily']['data']['4']['windSpeed'] . 'km/h',
       'windBearing' => $parsed_json['daily']['data']['4']['windBearing'] > 179 ? $parsed_json['daily']['data']['4']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['4']['windBearing'] + 180,
       'cloudCover' => $parsed_json['daily']['data']['4']['cloudCover']*100 . '%',
-      'pressure' => $parsed_json['daily']['data']['4']['pressure'] . 'mb',
+      'pressure' => $parsed_json['daily']['data']['4']['pressure'] . 'hPa',
       'ozone' => $parsed_json['daily']['data']['4']['ozone'] . 'DU',
       'sunriseTime' => date('H:i',$parsed_json['daily']['data']['4']['sunriseTime']),
       'sunsetTime' => date('H:i',$parsed_json['daily']['data']['4']['sunsetTime']),
@@ -1926,7 +1926,7 @@ class forecastio extends eqLogic {
       'windSpeed' => $parsed_json['daily']['data']['5']['windSpeed'] . 'km/h',
       'windBearing' => $parsed_json['daily']['data']['5']['windBearing'] > 179 ? $parsed_json['daily']['data']['5']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['5']['windBearing'] + 180,
       'cloudCover' => $parsed_json['daily']['data']['5']['cloudCover']*100 . '%',
-      'pressure' => $parsed_json['daily']['data']['5']['pressure'] . 'mb',
+      'pressure' => $parsed_json['daily']['data']['5']['pressure'] . 'hPa',
       'ozone' => $parsed_json['daily']['data']['5']['ozone'] . 'DU',
       'sunriseTime' => date('H:i',$parsed_json['daily']['data']['5']['sunriseTime']),
       'sunsetTime' => date('H:i',$parsed_json['daily']['data']['5']['sunsetTime']),
@@ -1942,7 +1942,7 @@ class forecastio extends eqLogic {
       'windSpeed' => $parsed_json['daily']['data']['6']['windSpeed'] . 'km/h',
       'windBearing' => $parsed_json['daily']['data']['6']['windBearing'] > 179 ? $parsed_json['daily']['data']['6']['windBearing'] -180 : $windBearing_status = $parsed_json['daily']['data']['6']['windBearing'] + 180,
       'cloudCover' => $parsed_json['daily']['data']['6']['cloudCover']*100 . '%',
-      'pressure' => $parsed_json['daily']['data']['6']['pressure'] . 'mb',
+      'pressure' => $parsed_json['daily']['data']['6']['pressure'] . 'hPa',
       'ozone' => $parsed_json['daily']['data']['6']['ozone'] . 'DU',
       'sunriseTime' => date('H:i',$parsed_json['daily']['data']['6']['sunriseTime']),
       'sunsetTime' => date('H:i',$parsed_json['daily']['data']['6']['sunsetTime']),
