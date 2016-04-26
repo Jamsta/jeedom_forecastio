@@ -1723,7 +1723,7 @@ class forecastio extends eqLogic {
                 $value = $value + 180;
               }
             }
-            if ($key == 'humidity') {
+            if ($key == 'humidity' || $key == 'cloudCover') {
               $value = $value * 100;
             }
             $forecastioCmd->setConfiguration('value',$value);
